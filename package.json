@@ -1,0 +1,22 @@
+{
+  "name": "nhom14_cnpmm",
+  "version": "1.0.0",
+  "description": "Đồ án môn Công nghệ phần mềm mới - Ứng dụng trao đổi hàng hóa (tương tự Chợ tốt)",
+  "main": "index.js",
+  "scripts": {
+    "install-server": "npm install --prefix server",
+    "install-client": "npm install --prefix client",
+    "install": "npm run install-server && npm run install-client",
+    "server": "npm run watch --prefix server",
+    "client": "npm start --prefix client",
+    "watch": "npm run server & npm run client",
+    "deploy": "npm run build --prefix client && npm start --prefix server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "19110426 - Võ Nhật Phi | 19110342 - Nguyễn Duy Dương | 19110417 - Nguyễn Minh Nhật",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

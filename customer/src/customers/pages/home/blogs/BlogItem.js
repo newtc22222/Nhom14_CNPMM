@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Card, Typography } from '@mui/material';
 import BoxImage from '../../../components/local/BoxImage';
@@ -7,10 +7,10 @@ import BlogItemMenu from './BlogItemMenu';
 const BlogItemCard = ({ blog, image, price }) => {
     const { id, title, address, createAt } = blog;
 
-    const getTime = () => {
-        const time = Date.now() - Date.parse(createAt);
-        return time;
-    }
+    // const getTime = () => {
+    //     const time = Date.now() - Date.parse(createAt);
+    //     return time;
+    // }
 
     return (
         <Card sx={{ maxWidth: '192px', backgroundColor: '#fff', "&:hover": { boxShadow: '0 0 5px #333' } }}>

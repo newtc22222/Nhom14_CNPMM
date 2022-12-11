@@ -1,16 +1,17 @@
 import React, { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
 import App from './app';
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
     <StrictMode>
         <StyledEngineProvider>
             <Router>
                 <App />
             </Router>
         </StyledEngineProvider>
-    </StrictMode>,
-    document.getElementById("root")
+    </StrictMode>
 );

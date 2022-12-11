@@ -12,13 +12,14 @@ import {
   Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import avt from "../../images/user.png";
-import { apiUsers } from '../apis/users.api';
-import { apiProducts } from '../apis/products.api';
-import { apiBills } from '../apis/bills.api';
-import { apiBlogs } from '../apis/blogs.api';
+import avt from "../../../images/user.png";
+import { apiUsers } from '../../apis/users.api';
+import { apiProducts } from '../../apis/products.api';
+import { apiBills } from '../../apis/bills.api';
+import { apiBlogs } from '../../apis/blogs.api';
 import moment from "moment";
-
+import Chart from "./Chart";
+ 
 const Dashboard= ({ setSelectedLink, link })=> {
 
   const [users, setUsers] = useState([]);
@@ -32,28 +33,28 @@ const Dashboard= ({ setSelectedLink, link })=> {
 
     const getUsers = async () => {
       const response = await apiUsers.getAllUsers();
-      console.log(response);
+      // console.log(response);
       setUsers(response);    
     };
     getUsers();
 
     const getProducts = async () => {
       const response = await apiProducts.getAllProducts();
-      console.log(response);
+      //console.log(response);
       setProducts(response);      
     };
     getProducts();
 
     const getBills = async () => {
       const response = await apiBills.getAllBills();
-      console.log(response);
+      //console.log(response);
       setBills(response);      
     };
     getBills();
 
     const getBlogs = async () => {
       const response = await apiBlogs.getAllBlogs();
-      console.log(response);
+      //console.log(response);
       setBlogs(response);      
     };
     getBlogs();
@@ -67,7 +68,7 @@ const Dashboard= ({ setSelectedLink, link })=> {
     return total;
   }
   const format= (n) => {
-    return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+    return '$'+n.toFixed(0).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   }
 
   return (
@@ -182,6 +183,9 @@ const Dashboard= ({ setSelectedLink, link })=> {
           </List>
         </Box> 
       </Paper>
+      <Paper elevation={3} sx={{p:2, gridColumn: "1/3"}}>
+      <Chart/>
+      </Paper>  
     </Box>
   )
 };

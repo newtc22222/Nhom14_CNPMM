@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route} from 'react-router-dom';
 import LayoutAdmin from './admins/containers/LayoutAdmin';
-import Page404 from './admins/pages/Page404';
+import Page404 from './admins/pages/page404/Page404';
 
 function App() {
   return (

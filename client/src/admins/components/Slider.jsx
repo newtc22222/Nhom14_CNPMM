@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from "react";
-import Dashboard from "../pages/Dashboard";
-import Categories from "../pages/Categories";
-import Products  from "../pages/Products";
-import Users from "../pages/Users";
+import Dashboard from "../pages/dashboard/Dashboard";
+import Categories from "../pages/categories/Categories";
+import Products  from "../pages/products/Products";
+import Users from "../pages/users/Users";
 import List from "@mui/material/List";
-import Page404 from "../pages/Page404";
+import Page404 from "../pages/page404/Page404";
 import Divider from "@mui/material/Divider";
 import { styled } from "@mui/material/styles";
 import ListItem from "@mui/material/ListItem";

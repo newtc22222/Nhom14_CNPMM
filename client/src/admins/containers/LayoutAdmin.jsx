@@ -1,5 +1,4 @@
-import Header from "./Header";
-import Dashboard from "../pages/Dashboard";
+import Slider from "../components/Slider"
 import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
@@ -37,12 +36,16 @@ export default function LayoutAdmin() {
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(true);
 
-  const darkTheme = useMemo(()=>createTheme({
-    palette: {
-      mode: dark ? 'dark' : 'light'
-  }
-  }), [dark])
-
+  const darkTheme = useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode: dark ? 'dark' : 'light',
+        },
+      }),
+    [dark]
+  );
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -66,16 +69,15 @@ export default function LayoutAdmin() {
           >
             <MenuIcon />
           </IconButton>
-          <IconButton onClick={()=>setDark(!dark)}>
-            {dark ? <Brightness7/> : <Brightness4/>}
-          </IconButton>
           <Typography variant="h6" noWrap sx={{flexGrow:1,}}>
             Dashboard
           </Typography>
-
+          <IconButton onClick={()=>setDark(!dark)}>
+            {dark ? <Brightness7/> : <Brightness4/>}
+          </IconButton>
         </Toolbar>
       </AppBar>
-      <Dashboard {...{ open, setOpen }} />
+      <Slider {...{ open, setOpen }} />
     </Box>
     </ThemeProvider>
   );

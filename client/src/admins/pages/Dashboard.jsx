@@ -1,139 +1,189 @@
-import React from "react";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import { styled} from '@mui/material/styles';
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MuiDrawer from "@mui/material/Drawer";
-import MailIcon from "@mui/icons-material/Mail";
-// import styled from "@emotion/styled";
-import { Box, IconButton, Typography } from "@mui/material";
-import ChevronLeft from "@mui/icons-material/ChevronLeft";
+import { Group} from '@mui/icons-material';
+import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
+import {
+  Avatar,
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Paper,
+  Typography,
+} from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import avt from "../../images/user.png";
+import { apiUsers } from '../apis/users.api';
+import { apiProducts } from '../apis/products.api';
+import { apiBills } from '../apis/bills.api';
+import { apiBlogs } from '../apis/blogs.api';
+import moment from "moment";
 
-const drawerWidth = 240;
+const Dashboard= ({ setSelectedLink, link })=> {
 
-const openedMixin = (theme) => ({
-  width: drawerWidth,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
+  const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [bills, setBills] = useState([]);
+  const [blogs, setBlogs] = useState([]);
 
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
 
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
+  useEffect(() => {
+    setSelectedLink(link);
 
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  width: drawerWidth,
-  flexShrink: 0,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
-  }),
-  ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
-  }),
-}));
+    const getUsers = async () => {
+      const response = await apiUsers.getAllUsers();
+      console.log(response);
+      setUsers(response);    
+    };
+    getUsers();
 
-const Dashboard = ({open, setOpen}) => {
+    const getProducts = async () => {
+      const response = await apiProducts.getAllProducts();
+      console.log(response);
+      setProducts(response);      
+    };
+    getProducts();
+
+    const getBills = async () => {
+      const response = await apiBills.getAllBills();
+      console.log(response);
+      setBills(response);      
+    };
+    getBills();
+
+    const getBlogs = async () => {
+      const response = await apiBlogs.getAllBlogs();
+      console.log(response);
+      setBlogs(response);      
+    };
+    getBlogs();
+  }, []);
+
+  const TotalBills= () => {
+    let total = 0;
+    bills.forEach(function (item) {
+      total+= (item.productPrice*item.productQuantity)
+    })
+    return total;
+  }
+  const format= (n) => {
+    return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+  }
+
   return (
-    <>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={() => setOpen(false)}>
-            <ChevronLeft />
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {["Dashboard", "Customers", "Products", "Account", "Settings"].map(
-            (text, index) => (
-              <ListItem key={text} disablePadding sx={{ display: "block" }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            )
-          )}
-        </List>
-        <Divider />
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </Box>
-    </>
-  );
-}
+    <Box
+      sx={{
+        display: { xs: 'flex', md: 'grid' },
+        gridTemplateColumns: 'repeat(3,1fr)',
+        gridAutoRows: 'minmax(100px, auto)',
+        gap: 3,
+        textAlign: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <Paper elevation={3} sx={{ p: 3 }}>
+        <Typography variant="h4">Total Users</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Group sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
+          <Typography variant="h4">{users.length}</Typography>
+        </Box>
+      </Paper>
+
+      <Paper elevation={3} sx={{ p: 3 }}>
+        <Typography variant="h4">Total Products</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <CatchingPokemonIcon sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
+          <Typography variant="h4">{products.length}</Typography>
+        </Box>
+      </Paper>
+
+      <Paper elevation={3} sx={{ p: 3 }}>
+        <Typography variant="h4">Total Blogs</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Group sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
+          <Typography variant="h4">{blogs.length}</Typography>
+        </Box>
+      </Paper>
+      <Paper elevation={3} sx={{ p: 3 }}>
+        <Typography variant="h4">Total Bills</Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <CatchingPokemonIcon sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
+          <Typography variant="h4">{format(TotalBills())} VND</Typography>
+        </Box>
+      </Paper>
+      <Paper elevation={3} sx={{ p: 2, gridColumn: 3, gridRow: '1/4' }}>
+        <Box>
+          <Typography>Recently added Users</Typography>
+          <List>
+            {users.map((user, i) => (
+              <Box key={user.id}>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar alt={user?.name} src={avt} />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={user?.name}
+                    secondary={`Time Created: ${moment(user?.createdAt).format(
+                      'DD-MM-YYYY ss:mm:H'
+                    )}`}
+                  /> 
+                </ListItem>
+                {i !== 3 && <Divider variant="inset" />}
+              </Box>
+            ))}
+          </List>
+        </Box> 
+        <Divider sx={{ mt: 3, mb: 3, opacity: 0.7 }} />
+        <Box>
+          <Typography>Recently added Products</Typography>
+          <List>
+            {products.map((item, i) => (
+              <Box key={item.id}>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar
+                      alt={item?.name}
+                      src={item?.images[0]}
+                      variant="rounded"
+                    />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={item?.name}
+                    secondary={`Price: ${item.price}`}
+                  />
+                </ListItem>
+                {i !== 3 && <Divider variant="inset" />}
+              </Box>
+            ))}
+          </List>
+        </Box> 
+      </Paper>
+    </Box>
+  )
+};
 
 export default Dashboard;

@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import BlogItemCard from './BlogItem';
 
 const card = [0, 1, 2, 3, 4, 5, 6]
 
 const BlogsBox = () => {
+    const [blogs, setBlog] = useState(null);
+
     useEffect(() => {
 
     }, []);

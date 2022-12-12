@@ -40,7 +40,7 @@ const Footer = () => {
                   }}
                   onClick={handleClickAppStore}
                   alt="The house from the offer."
-                  src="https://th.bing.com/th/id/R.3aea2a63b82282884c07bda97a50e95a?rik=rxxZEL3CFQC%2fUQ&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f10%2fDownload-On-The-App-Store-PNG-Photos.png&ehk=PrmhHxHiUqmMFGtO%2f7IR%2fmtsRFqmnhDeizN%2fVPJguWQ%3d&risl=&pid=ImgRaw&r=0"
+                  src={require('./local/appStore.png')}
                 />
                 <Box
                   component="img"
@@ -51,7 +51,7 @@ const Footer = () => {
                     marginBottom: '7px',
                   }}
                   alt="The house from the offer."
-                  src="https://www.banksathi.com/public/site/image/gplay.png"
+                  src={require('./local/chplay.png')}
                 />
                 <Box
                   component="img"
@@ -60,7 +60,7 @@ const Footer = () => {
                     width: 100,
                   }}
                   alt="The house from the offer."
-                  src="https://th.bing.com/th/id/OIP.5c2Zpbyi6aGrLTndNktbCQHaCN?pid=ImgDet&rs=1"
+                  src={require('./local/appGallery.jpg')}
                 />
               </Grid>
             </Grid>

@@ -38,7 +38,7 @@ const Register = () => {
       </Breadcrumbs>
       <Box
         sx={{
-          backgroundImage: 'url("https://th.bing.com/th/id/R.830281c7372b5d0dda3a1d69b18858dc?rik=MyjNEjUNNMdSVw&pid=ImgRaw&r=0")',
+          backgroundImage: 'url("https://www.questica.com/wp-content/themes/questica/inc/img/home/Orange-Shape.png")',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100% 100%',
           display: 'flex',
@@ -81,11 +81,10 @@ const Register = () => {
               <Select
                 id="gender"
                 label="Giới tính"
-                // name="gender"
                 value={gender}
                 variant="standard"
                 sx={textFieldStyle}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e)}
               >
                 {genderList.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -94,15 +93,39 @@ const Register = () => {
                 ))}
               </Select>
 
-              <TextField
-                required
-                id="address"
-                label="Địa chỉ"
-                placeholder="phường Linh Trung, thành phố Thủ Đức"
-                type="text"
-                variant="standard"
-                sx={textFieldStyle}
-              />
+              <Box>
+                    <InputLabel sx={{ fontSize: '0.8rem' }}>Địa chỉ *</InputLabel>
+                    <TextField
+                        required
+                        id="street"
+                        label="Số nhà, đường, phường/xã/ấp"
+                        name="street"
+                        placeholder="đường số 17, phường Linh Trung"
+                        type="text"
+                        variant="standard"
+                        sx={textFieldStyle}
+                    />
+                    <TextField
+                        required
+                        id="town"
+                        label="Thị trấn, huyện, thị xã, thành phố"
+                        name="town"
+                        placeholder="Thành phố Thủ Đức"
+                        type="text"
+                        variant="standard"
+                        sx={textFieldStyle}
+                    />
+                    <TextField
+                        required
+                        id="province"
+                        label="Tỉnh, thành phố trực thuộc quốc gia"
+                        name="province"
+                        placeholder="Thành phố Hồ Chí Minh"
+                        type="text"
+                        variant="standard"
+                        sx={textFieldStyle}
+                    />
+                </Box>
               <TextField
                 id="email"
                 label="Email"

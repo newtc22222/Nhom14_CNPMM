@@ -17,7 +17,7 @@ const Login = () => {
       </Breadcrumbs>
       <Box
         sx={{
-          backgroundImage: 'url("https://th.bing.com/th/id/R.830281c7372b5d0dda3a1d69b18858dc?rik=MyjNEjUNNMdSVw&pid=ImgRaw&r=0")',
+          backgroundImage: 'url("https://www.questica.com/wp-content/themes/questica/inc/img/home/Orange-Shape.png")',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100% 100%',
           display: 'flex',

@@ -1,23 +1,23 @@
 const express = require('express');
 const {
-    httpGetAllCategories,
-    httpFindCategoryWithId,
-    httpCreateNewCategory,
-    httpUpdateCategory,
-    httpRemoveCategory
+    getAllCategory,
+    findCategoryById,
+    AddCategory,
+    UpdateCategory,
+    DeleteCategory
 } = require('../controllers/category.controller');
 
 const { httpGetProductByCategory } = require('../controllers/product.controller');
 
 const categoryRouter = express.Router();
 
-categoryRouter.get('/', httpGetAllCategories);
-categoryRouter.get('/:id', httpFindCategoryWithId);
-categoryRouter.post('/', httpCreateNewCategory);
-categoryRouter.put('/:id', httpUpdateCategory);
-categoryRouter.delete('/:id', httpRemoveCategory);
+categoryRouter.get('/', getAllCategory);
+categoryRouter.get('/:id', findCategoryById);
+categoryRouter.post('/', AddCategory);
+categoryRouter.put('/:id', UpdateCategory);
+categoryRouter.delete('/:id', DeleteCategory);
 
 // products
-categoryRouter.get('/:id/products', httpGetProductByCategory);
+//categoryRouter.get('/:id/products', httpGetProductByCategory);
 
 module.exports = categoryRouter;

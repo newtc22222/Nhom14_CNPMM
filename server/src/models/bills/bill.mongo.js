@@ -16,7 +16,7 @@ const billSchema = mongoose.Schema({
         ref: 'Product',
         required: true
     },
-    productName: {
+    productId: {
         type: String,
         required: true
     },

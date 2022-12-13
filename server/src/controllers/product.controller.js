@@ -1,4 +1,4 @@
-const ProductModel = require('../models/users/product.mongo')
+const ProductModel = require('../models/products/product.mongo')
 const asyncHandler = require('express-async-handler')
 
 const getAllProduct = asyncHandler(async (req, res) => {
@@ -24,13 +24,12 @@ const AddProduct = asyncHandler(async (req, res) => {
       categoryId: req.body.categoryId,
       name: req.body.name,
       price: req.body.price,
-      images: req.body.image,
       description: req.body.description,
-      price: req.body.price
-
-    });
+      price: req.body.price,
+      images: req.body.images
+    })
     const newProduct = await product.save();
-  
+
     if (newProduct) {
       return res
         .status(201)
@@ -38,10 +37,11 @@ const AddProduct = asyncHandler(async (req, res) => {
     } else {
       res.send("Không thể tạo sản phẩm");
     }
-});
+})
 
 const UpdateProduct = asyncHandler(async (req, res) => {
-    const product = await ProductModel.findById(req.body._id);
+    const _id = req.params.id;
+    const product = await ProductModel.findById(_id);
     if (product) {
         product.categoryId = req.body.categoryId,
         product.name = req.body.name,
@@ -54,7 +54,6 @@ const UpdateProduct = asyncHandler(async (req, res) => {
         res.send("Cập nhật sản phẩm thành công");
       }
     }
-  
     return res.send("Cập nhật sản phẩm thất bại");
 });
 

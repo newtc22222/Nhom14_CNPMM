@@ -8,7 +8,7 @@ const SALT_WORK_FACTOR = 10;
 
 const userSchema = mongoose.Schema({
     name: {
-        type: String, 
+        type: String,
         required: true
     },
     dob: {
@@ -53,10 +53,15 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         required: true
     },
-    // Follow
+    // userFollowings: {
+    //     type: String,
+    //     required: false
+    // }
+    //Follow
     userFollowings: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: String
+        //type: mongoose.Schema.Types.ObjectId,
+        //ref: 'User'
     }]
     // followers: [{
     //     type: mongoose.Schema.Types.ObjectId,
@@ -66,27 +71,27 @@ const userSchema = mongoose.Schema({
     timestamps: true
 });
 
-userSchema.pre('save', (next) => {
-    var user = this;
+// userSchema.pre('save', (next) => {
+//     var user = this;
 
-    if (!user.isModified('password')) return next();
+//     if (!user.isModified('password')) return next();
 
-    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
-        if(err) return next(err);
+//     bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+//         if(err) return next(err);
 
-        bcrypt.hash(user.password, salt, (err, hash) => {
-            if (err) return next(err);
-            user.password = hash;
-            next();            
-        })
-    })
-});
+//         bcrypt.hash(user.password, salt, (err, hash) => {
+//             if (err) return next(err);
+//             user.password = hash;
+//             next();
+//         })
+//     })
+// });
 
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
+// userSchema.methods.comparePassword = function(candidatePassword, cb) {
+//     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+//         if (err) return cb(err);
+//         cb(null, isMatch);
+//     });
+// };
 
 module.exports = mongoose.model('User', userSchema);

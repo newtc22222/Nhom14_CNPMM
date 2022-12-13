@@ -1,9 +1,9 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-const apiCategories = {
-    getAllCategories : async () => {
+const apiNotifications = {
+    getAllNotifications: async () => {
         const response = await fetch(
-            `${BASE_URL}/categories`,
+            `${BASE_URL}/notifications`,
             {
                 method: 'GET',
             }
@@ -11,9 +11,9 @@ const apiCategories = {
         return handleResponse(response);
     },
 
-    getCategoryWithId : async (categoryId) => {
+    getNotificationWithId: async (notificationId) => {
         const response = await fetch(
-            `${BASE_URL}/categories/${categoryId}`,
+            `${BASE_URL}/notifications/${notificationId}`,
             {
                 method: 'GET',
             }
@@ -21,33 +21,37 @@ const apiCategories = {
         return handleResponse(response);
     },
     
-    createNewCategory : async (category) => {
+    createNewNotification: async (notification) => {
         const response = await fetch(
-            `${BASE_URL}/categories`,
+            `${BASE_URL}/notifications`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(notification)
             }
         );
         return handleResponse(response);
     },
     
-    updateCategory : async (category, categoryId) => {
+    updateNotification: async (notification, notificationId) => {
         const response = await fetch(
-            `${BASE_URL}/categories/${categoryId}`,
+            `${BASE_URL}/notifications/${notificationId}`,
             {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(category)
+                body: JSON.stringify(notification)
             }
         );
         return handleResponse(response);
     },
     
-    removeCategory : async (categoryId) => {
+    removeNotification: async (notificationId) => {
         const response = await fetch(
-            `${BASE_URL}/categories/${categoryId}`,
+            `${BASE_URL}/notifications/${notificationId}`,
             {
                 method: 'DELETE',
             }
@@ -56,4 +60,4 @@ const apiCategories = {
     }
 }
 
-export default apiCategories;
+export default apiNotifications;

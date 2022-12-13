@@ -1,9 +1,9 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-export const apiComments = {
-    getAllComments: async () => {
+const apiMessages = {
+    getAllMessages: async () => {
         const response = await fetch(
-            `${BASE_URL}/comments`,
+            `${BASE_URL}/messages`,
             {
                 method: 'GET',
             }
@@ -11,9 +11,9 @@ export const apiComments = {
         return handleResponse(response);
     },
 
-    getCommentWithId: async (commentId) => {
+    getMessageWithId: async (messageId) => {
         const response = await fetch(
-            `${BASE_URL}/comments/${commentId}`,
+            `${BASE_URL}/messages/${messageId}`,
             {
                 method: 'GET',
             }
@@ -21,33 +21,37 @@ export const apiComments = {
         return handleResponse(response);
     },
     
-    createNewComment: async (comment) => {
+    createNewMessage: async (message) => {
         const response = await fetch(
-            `${BASE_URL}/comments`,
+            `${BASE_URL}/messages`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(message)
             }
         );
         return handleResponse(response);
     },
     
-    updateComment: async (comment, commentId) => {
+    updateMessage: async (message, messageId) => {
         const response = await fetch(
-            `${BASE_URL}/comments/${commentId}`,
+            `${BASE_URL}/messages/${messageId}`,
             {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(comment)
+                body: JSON.stringify(message)
             }
         );
         return handleResponse(response);
     },
     
-    removeComment: async (commentId) => {
+    removeMessage: async (messageId) => {
         const response = await fetch(
-            `${BASE_URL}/comments/${commentId}`,
+            `${BASE_URL}/messages/${messageId}`,
             {
                 method: 'DELETE',
             }
@@ -55,3 +59,5 @@ export const apiComments = {
         return handleResponse(response);
     }
 }
+
+export default apiMessages;

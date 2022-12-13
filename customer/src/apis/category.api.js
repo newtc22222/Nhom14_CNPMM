@@ -1,9 +1,9 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-export const apiMessages = {
-    getAllMessages: async () => {
+const apiCategories = {
+    getAllCategories : async () => {
         const response = await fetch(
-            `${BASE_URL}/messages`,
+            `${BASE_URL}/categories`,
             {
                 method: 'GET',
             }
@@ -11,9 +11,9 @@ export const apiMessages = {
         return handleResponse(response);
     },
 
-    getMessageWithId: async (messageId) => {
+    getCategoryWithId : async (categoryId) => {
         const response = await fetch(
-            `${BASE_URL}/messages/${messageId}`,
+            `${BASE_URL}/categories/${categoryId}`,
             {
                 method: 'GET',
             }
@@ -21,33 +21,37 @@ export const apiMessages = {
         return handleResponse(response);
     },
     
-    createNewMessage: async (message) => {
+    createNewCategory : async (category) => {
         const response = await fetch(
-            `${BASE_URL}/messages`,
+            `${BASE_URL}/categories`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(category)
             }
         );
         return handleResponse(response);
     },
     
-    updateMessage: async (message, messageId) => {
+    updateCategory : async (category, categoryId) => {
         const response = await fetch(
-            `${BASE_URL}/messages/${messageId}`,
+            `${BASE_URL}/categories/${categoryId}`,
             {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(message)
+                body: JSON.stringify(category)
             }
         );
         return handleResponse(response);
     },
     
-    removeMessage: async (messageId) => {
+    removeCategory : async (categoryId) => {
         const response = await fetch(
-            `${BASE_URL}/messages/${messageId}`,
+            `${BASE_URL}/categories/${categoryId}`,
             {
                 method: 'DELETE',
             }
@@ -55,3 +59,5 @@ export const apiMessages = {
         return handleResponse(response);
     }
 }
+
+export default apiCategories;

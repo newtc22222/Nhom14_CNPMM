@@ -1,9 +1,9 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-export const apiBills = {
-    getAllBills: async () => {
+const apiComments = {
+    getAllComments: async () => {
         const response = await fetch(
-            `${BASE_URL}/bills`,
+            `${BASE_URL}/comments`,
             {
                 method: 'GET',
             }
@@ -11,9 +11,9 @@ export const apiBills = {
         return handleResponse(response);
     },
 
-    getBillWithId: async (billId) => {
+    getCommentWithId: async (commentId) => {
         const response = await fetch(
-            `${BASE_URL}/bills/${billId}`,
+            `${BASE_URL}/comments/${commentId}`,
             {
                 method: 'GET',
             }
@@ -21,33 +21,37 @@ export const apiBills = {
         return handleResponse(response);
     },
     
-    createNewBill: async (bill) => {
+    createNewComment: async (comment) => {
         const response = await fetch(
-            `${BASE_URL}/bills`,
+            `${BASE_URL}/comments`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(comment)
             }
         );
         return handleResponse(response);
     },
     
-    updateBill: async (bill, billId) => {
+    updateComment: async (comment, commentId) => {
         const response = await fetch(
-            `${BASE_URL}/bills/${billId}`,
+            `${BASE_URL}/comments/${commentId}`,
             {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(bill)
+                body: JSON.stringify(comment)
             }
         );
         return handleResponse(response);
     },
     
-    removeBill: async (billId) => {
+    removeComment: async (commentId) => {
         const response = await fetch(
-            `${BASE_URL}/bills/${billId}`,
+            `${BASE_URL}/comments/${commentId}`,
             {
                 method: 'DELETE',
             }
@@ -55,3 +59,5 @@ export const apiBills = {
         return handleResponse(response);
     }
 }
+
+export default apiComments;

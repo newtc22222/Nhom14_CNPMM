@@ -1,53 +1,57 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-export const apiChats = {
-    getAllChats: async () => {
+const apiUsers = {
+    getAllUser: async () => {
         const response = await fetch(
-            `${BASE_URL}/chats`,
+            `${BASE_URL}/users`,
             {
                 method: 'GET',
             }
         );
         return handleResponse(response);
-    },
-    
-    getChatWithId: async (chatId) => {
+    },   
+
+    getUserWithId: async (userId) => {
         const response = await fetch(
-            `${BASE_URL}/chats/${chatId}`,
+            `${BASE_URL}/users/${userId}`,
             {
-                method: 'GET',
+                method: 'GET'
             }
         );
         return handleResponse(response);
     },
-    
-    createNewChat: async (chat) => {
+
+    createNewUser: async (user) => {
         const response = await fetch(
-            `${BASE_URL}/chats`,
+            `${BASE_URL}/users`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user)
             }
         );
         return handleResponse(response);
     },
     
-    updateChat: async (chat, chatId) => {
+    updateUser: async (user, userId) => {
         const response = await fetch(
-            `${BASE_URL}/chats/${chatId}`,
+            `${BASE_URL}/users/${userId}`,
             {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(chat)
+                body: JSON.stringify(user)
             }
         );
         return handleResponse(response);
     },
     
-    removeChat: async (chatId) => {
+    removeUser: async (userId) => {
         const response = await fetch(
-            `${BASE_URL}/chats/${chatId}`,
+            `${BASE_URL}/users/${userId}`,
             {
                 method: 'DELETE',
             }
@@ -55,3 +59,5 @@ export const apiChats = {
         return handleResponse(response);
     }
 }
+
+export default apiUsers;

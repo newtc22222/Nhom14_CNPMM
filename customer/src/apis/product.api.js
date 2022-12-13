@@ -1,6 +1,6 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-export const apiProducts = {
+const apiProducts = {
     getAllProducts: async () => {
         const response = await fetch(
             `${BASE_URL}/products`,
@@ -21,11 +21,15 @@ export const apiProducts = {
         return handleResponse(response);
     },
     
-    createNewProduct: async (user) => {
+    createNewProduct: async (product) => {
         const response = await fetch(
             `${BASE_URL}/products`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(product)
             }
         );
         return handleResponse(response);
@@ -56,3 +60,4 @@ export const apiProducts = {
     }
 }
 
+export default apiProducts;

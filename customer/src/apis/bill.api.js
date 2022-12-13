@@ -1,9 +1,9 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-export const apiNotifications = {
-    getAllNotifications: async () => {
+const apiBills = {
+    getAllBills: async () => {
         const response = await fetch(
-            `${BASE_URL}/notifications`,
+            `${BASE_URL}/bills`,
             {
                 method: 'GET',
             }
@@ -11,9 +11,9 @@ export const apiNotifications = {
         return handleResponse(response);
     },
 
-    getNotificationWithId: async (notificationId) => {
+    getBillWithId: async (billId) => {
         const response = await fetch(
-            `${BASE_URL}/notifications/${notificationId}`,
+            `${BASE_URL}/bills/${billId}`,
             {
                 method: 'GET',
             }
@@ -21,33 +21,37 @@ export const apiNotifications = {
         return handleResponse(response);
     },
     
-    createNewNotification: async (notification) => {
+    createNewBill: async (bill) => {
         const response = await fetch(
-            `${BASE_URL}/notifications`,
+            `${BASE_URL}/bills`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bill)
             }
         );
         return handleResponse(response);
     },
     
-    updateNotification: async (notification, notificationId) => {
+    updateBill: async (bill, billId) => {
         const response = await fetch(
-            `${BASE_URL}/notifications/${notificationId}`,
+            `${BASE_URL}/bills/${billId}`,
             {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(notification)
+                body: JSON.stringify(bill)
             }
         );
         return handleResponse(response);
     },
     
-    removeNotification: async (notificationId) => {
+    removeBill: async (billId) => {
         const response = await fetch(
-            `${BASE_URL}/notifications/${notificationId}`,
+            `${BASE_URL}/bills/${billId}`,
             {
                 method: 'DELETE',
             }
@@ -55,3 +59,5 @@ export const apiNotifications = {
         return handleResponse(response);
     }
 }
+
+export default apiBills;

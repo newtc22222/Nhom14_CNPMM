@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
-import AppLayout from './customers/containers/AppLayout';
-import Home from './customers/pages/home/Home';
-import Blog from './customers/pages/blogs/Blog';
-import Invoice from './customers/pages/invoices/Invoice';
-import UserPage from './customers/pages/user/UserPage';
-import ProfilePage from './customers/pages/user/profile/ProfilePage';
-import Post from './customers/pages/post/Post';
-import Login from './customers/pages/login/Login';
-import Register from './customers/pages/register/Register';
+import AppLayout from './containers/AppLayout';
+import Home from './pages/home/Home';
+import Blog from './pages/blogs/Blog';
+import Invoice from './pages/invoices/Invoice';
+import UserPage from './pages/user/UserPage';
+import ProfilePage from './pages/user/profile/ProfilePage';
+import Post from './pages/post/Post';
+import Login from './pages/login/Login';
+import Register from './pages/register/Register';
 
 const App = () => {
   // const [blog, setBlog] = useState(null);

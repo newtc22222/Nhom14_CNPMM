@@ -11,7 +11,7 @@ const categorySchema = mongoose.Schema({
         require: true,
         maxLength: 100
     },
-    subType: {
+    subtype: {
         type: String, 
         maxLength: 100
     },

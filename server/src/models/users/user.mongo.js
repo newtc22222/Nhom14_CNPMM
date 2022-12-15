@@ -34,6 +34,11 @@ const userSchema = mongoose.Schema({
             required: true
         }
     },
+    avatar: {
+        data: Buffer,
+        contentType: String,
+        required: false
+    },
     email: {
         type: String,
         required: false
@@ -51,8 +56,10 @@ const userSchema = mongoose.Schema({
     },
     isAdmin: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
+<<<<<<< Updated upstream
     // userFollowings: {
     //     type: String,
     //     required: false
@@ -62,19 +69,26 @@ const userSchema = mongoose.Schema({
         type: String
         //type: mongoose.Schema.Types.ObjectId,
         //ref: 'User'
+=======
+    // Nguoi dang theo doi
+    userFollowings: [{
+        type: String,
+>>>>>>> Stashed changes
     }]
-    // followers: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // }]
 }, {
     timestamps: true
 });
 
+<<<<<<< Updated upstream
 // userSchema.pre('save', (next) => {
 //     var user = this;
 
 //     if (!user.isModified('password')) return next();
+=======
+userSchema.pre('save', function(next) {
+    var user = this;
+    if (!user.isModified('password')) return next();
+>>>>>>> Stashed changes
 
 //     bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
 //         if(err) return next(err);
@@ -87,11 +101,17 @@ const userSchema = mongoose.Schema({
 //     })
 // });
 
+<<<<<<< Updated upstream
 // userSchema.methods.comparePassword = function(candidatePassword, cb) {
 //     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
 //         if (err) return cb(err);
 //         cb(null, isMatch);
 //     });
 // };
+=======
+userSchema.methods.comparePassword = async function(candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
+};
+>>>>>>> Stashed changes
 
 module.exports = mongoose.model('User', userSchema);

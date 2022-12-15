@@ -11,6 +11,13 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+<<<<<<< Updated upstream
+=======
+    images: [{
+        data: Buffer,
+        contentType: String
+    }],
+>>>>>>> Stashed changes
     description: {
         type: String,
         required: [true, 'Some information has a big data!']

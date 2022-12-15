@@ -1,6 +1,7 @@
 const express = require('express');
 const {
     httpGetNotifications,
+    httpGetSystemNotifications,
     httpFindNotificationWithId,
     httpCreateNewNotification,
     httpUpdateNotification,
@@ -10,6 +11,7 @@ const {
 const notificationRouter = express.Router();
 
 notificationRouter.get('/', httpGetNotifications);
+notificationRouter.get('/system', httpGetSystemNotifications);
 notificationRouter.get('/:id', httpFindNotificationWithId);
 notificationRouter.post('/', httpCreateNewNotification);
 notificationRouter.put('/:id', httpUpdateNotification);

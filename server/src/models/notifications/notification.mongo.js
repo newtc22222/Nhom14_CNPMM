@@ -30,4 +30,8 @@ const notificationSchema = mongoose.Schema({
         default: 'activity',
         required: true
     }
+},{
+    timestamps: true
 });
+
+module.exports = mongoose.model('Notification', notificationSchema);

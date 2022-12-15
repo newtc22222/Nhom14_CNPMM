@@ -2,6 +2,7 @@ const express = require('express');
 const {
     httpGetAllBlogs,
     httpFindBlogWithId,
+    httpFindBlogWithSlug,
     httpGetFollowers,
     httpCreateNewBlog,
     httpUpdateBlog,
@@ -14,6 +15,7 @@ const blogRouter = express.Router();
 
 blogRouter.get('/', httpGetAllBlogs);
 blogRouter.get('/:id', httpFindBlogWithId);
+blogRouter.get('/s/:slug', httpFindBlogWithSlug);
 blogRouter.get('/:id/follwers', httpGetFollowers),
 blogRouter.post('/', httpCreateNewBlog);
 blogRouter.put('/:id', httpUpdateBlog);

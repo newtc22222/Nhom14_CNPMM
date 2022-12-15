@@ -24,15 +24,25 @@ const blogSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    categoryId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true
+    },
     productId: {
-        type:mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
         required: true
     },
     followers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: String,
     }],
+    status: {
+        type: String,
+        enum: ['ACTIVE', 'STORE', 'REJECT', 'DRAFT'],
+        default: 'ACTIVE',
+        required: true,
+    },
 }, {
     timestamps: true
 });

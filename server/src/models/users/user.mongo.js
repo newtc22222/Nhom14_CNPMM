@@ -8,7 +8,7 @@ const SALT_WORK_FACTOR = 10;
 
 const userSchema = mongoose.Schema({
     name: {
-        type: String, 
+        type: String,
         required: true
     },
     dob: {
@@ -34,6 +34,11 @@ const userSchema = mongoose.Schema({
             required: true
         }
     },
+    avatar: {
+        data: Buffer,
+        contentType: String,
+        required: false
+    },
     email: {
         type: String,
         required: false
@@ -51,42 +56,62 @@ const userSchema = mongoose.Schema({
     },
     isAdmin: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
-    // Follow
+<<<<<<< Updated upstream
+    // userFollowings: {
+    //     type: String,
+    //     required: false
+    // }
+    //Follow
     userFollowings: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: String
+        //type: mongoose.Schema.Types.ObjectId,
+        //ref: 'User'
+=======
+    // Nguoi dang theo doi
+    userFollowings: [{
+        type: String,
+>>>>>>> Stashed changes
     }]
-    // followers: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // }]
 }, {
     timestamps: true
 });
 
-userSchema.pre('save', (next) => {
+<<<<<<< Updated upstream
+// userSchema.pre('save', (next) => {
+//     var user = this;
+
+//     if (!user.isModified('password')) return next();
+=======
+userSchema.pre('save', function(next) {
     var user = this;
-
     if (!user.isModified('password')) return next();
+>>>>>>> Stashed changes
 
-    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
-        if(err) return next(err);
+//     bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+//         if(err) return next(err);
 
-        bcrypt.hash(user.password, salt, (err, hash) => {
-            if (err) return next(err);
-            user.password = hash;
-            next();            
-        })
-    })
-});
+//         bcrypt.hash(user.password, salt, (err, hash) => {
+//             if (err) return next(err);
+//             user.password = hash;
+//             next();
+//         })
+//     })
+// });
 
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
+<<<<<<< Updated upstream
+// userSchema.methods.comparePassword = function(candidatePassword, cb) {
+//     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+//         if (err) return cb(err);
+//         cb(null, isMatch);
+//     });
+// };
+=======
+userSchema.methods.comparePassword = async function(candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
 };
+>>>>>>> Stashed changes
 
 module.exports = mongoose.model('User', userSchema);

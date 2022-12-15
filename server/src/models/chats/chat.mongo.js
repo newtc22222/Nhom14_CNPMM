@@ -6,8 +6,8 @@ const chatSchema = mongoose.Schema({
         required: true,
     },
     users: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: String,
+        required: true
     }]
 }, {
     timestamps: true

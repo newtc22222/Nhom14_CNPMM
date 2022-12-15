@@ -14,9 +14,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "19110426 - Võ Nhật Phi | 19110342 - Nguyễn Duy Dương | 19110417 - Nguyễn Minh Nhật",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2"
-  }
+  "license": "ISC"
 }

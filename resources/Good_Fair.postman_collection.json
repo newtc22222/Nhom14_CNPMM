@@ -1,0 +1,1481 @@
+{
+	"info": {
+		"_postman_id": "990181fa-a5d5-4fa8-84cb-a0e1072276ad",
+		"name": "Good_Fair",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22732766"
+	},
+	"item": [
+		{
+			"name": "Bills",
+			"item": [
+				{
+					"name": "GET /bills",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/bills",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"bills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /bills/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/bills/63988662dd592a17e35daae6",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"bills",
+								"63988662dd592a17e35daae6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /bills",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"buyerId\": \"91619325-746a-4660-892a-7ee83619abd3\",\r\n    \"sellerId\": \"0092ca1d-06ef-4f90-9251-0f1bbc5471ec\",\r\n    \"productId\": \"ecd090c3-f70e-43f4-997d-03a1e711ea1\",\r\n    \"productName\": \"Mèo Anh Quốc\",\r\n    \"productImage\": \"https://www.shutterstock.com/image-photo/american-shorthair-cat-on-gray-600w-777115651.jpg\",\r\n    \"productQuantity\": 2,\r\n    \"productPrice\": 21500000.0,\r\n    \"status\": \"DONE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/bills",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"bills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /bills/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"buyerId\": \"91619325-746a-4660-892a-7ee83619abd3\",\r\n    \"sellerId\": \"0092ca1d-06ef-4f90-9251-0f1bbc5471ec\",\r\n    \"productId\": \"ecd090c3-f70e-43f4-997d-03a1e711ea1\",\r\n    \"productName\": \"Mèo Mướp\",\r\n    \"productImage\": \"https://www.shutterstock.com/image-photo/american-shorthair-cat-on-gray-600w-777115651.jpg\",\r\n    \"productQuantity\": 2,\r\n    \"productPrice\": 1500000.0,\r\n    \"status\": \"DONE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/bills/63988662dd592a17e35daae6",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"bills",
+								"63988662dd592a17e35daae6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /bills/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/bills/63988662dd592a17e35daae6",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"bills",
+								"63988662dd592a17e35daae6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blogs",
+			"item": [
+				{
+					"name": "GET /blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/blogs",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /blogs/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_api}}/blogs/63988685c4b47181fa074787",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"blogs",
+								"63988685c4b47181fa074787"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /blogs/:id/comments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_api}}/blogs/63988685c4b47181fa074787/comments",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"blogs",
+								"63988685c4b47181fa074787",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /blogs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"slug\": \"meo-anh-quoc-dang-nhan-giong-can-ban-gap\",\r\n    \"title\": \"Mèo Anh Quốc đang nhân giống, cần bán gấp\",\r\n    \"address\": \"phường Linh Trung, Thành phố Thủ Đức\",\r\n    \"content\": \"Mèo <b>Anh Quốc</b> đang có số lượng lớn vừa mới sinh ra, cần tìm chủ mới để nuôi. <br/> Mọi thủ tục vui lòng liên hệ thông qua số điện thoại bên cạnh!\",\r\n    \"authorId\": \"0092ca1d-06ef-4f90-9251-0f1bbc5471ec\",\r\n    \"categoryId\": \"ecd090c3-f70e-43f4-997d-03a1e711ea15\",\r\n    \"followers\": [\r\n        \"b5f748a5-0037-4d25-bac3-1f160fd4d932\",\r\n        \"91619325-746a-4660-892a-7ee83619abd3\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/blogs",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /blogs/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"slug\": \"meo-ba-tu-dang-nhan-giong-can-ban-gap\",\r\n    \"title\": \"Mèo Ba Tư đang nhân giống, cần bán gấp\",\r\n    \"address\": \"phường Linh Trung, Thành phố Thủ Đức\",\r\n    \"content\": \"Mèo <b>Ba Tư</b> đang có số lượng lớn vừa mới sinh ra, cần tìm chủ mới để nuôi. <br/> Mọi thủ tục vui lòng liên hệ thông qua số điện thoại bên cạnh!\",\r\n    \"authorId\": \"0092ca1d-06ef-4f90-9251-0f1bbc5471ec\",\r\n    \"categoryId\": \"ecd090c3-f70e-43f4-997d-03a1e711ea15\",\r\n    \"followers\": [\r\n        \"b5f748a5-0037-4d25-bac3-1f160fd4d932\",\r\n        \"91619325-746a-4660-892a-7ee83619abd3\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/blogs/63988685c4b47181fa074787",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"blogs",
+								"63988685c4b47181fa074787"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /blogs/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/blogs/63988685c4b47181fa074787",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"blogs",
+								"63988685c4b47181fa074787"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categores",
+			"item": [
+				{
+					"name": "GET /categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/categories",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /categories/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/categories/639844e15d6bcd5b9be77899",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"categories",
+								"639844e15d6bcd5b9be77899"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /categories/:id/products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/categories/639844e15d6bcd5b9be77899/products",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"categories",
+								"639844e15d6bcd5b9be77899",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /categories/:id/blogs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/categories/639851d68cb6f20e73ee709c/blogs",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"categories",
+								"639851d68cb6f20e73ee709c",
+								"blogs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /categories",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"slug\": \"do-dien-tu-dien-thoai-nokia\",\r\n    \"type\": \"Đồ điện tử\",\r\n    \"subtype\": \"Điện thoại Nokia\",\r\n    \"description\": \"Cục gạch của thế giới!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/categories",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /categories/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"slug\": \"do-dien-tu-dien-thoai-vivo\",\r\n    \"type\": \"Đồ điện tử\",\r\n    \"subtype\": \"Điện thoại vivo\",\r\n    \"description\": \"Chất lượng đi kèm số lượng\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/categories/63984cb9db6d1af5e2d1ef7d",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"categories",
+								"63984cb9db6d1af5e2d1ef7d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /categories/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/categories/639851d68cb6f20e73ee709c",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"categories",
+								"639851d68cb6f20e73ee709c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chats",
+			"item": [
+				{
+					"name": "GET /chats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/chats",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"chats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /chats/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/chats/6398869f36dffe2ad318c912",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"chats",
+								"6398869f36dffe2ad318c912"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /chats/:id/users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/chats/6398869f36dffe2ad318c912/users",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"chats",
+								"6398869f36dffe2ad318c912",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /chats/:id/messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/chats/6398869f36dffe2ad318c912/messages",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"chats",
+								"6398869f36dffe2ad318c912",
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /chats",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"topic\": \"Mua mèo Anh Quốc\",\r\n    \"users\": [\r\n        \"0092ca1d-06ef-4f90-9251-0f1bbc5471ec\",\r\n        \"91619325-746a-4660-892a-7ee83619abd3\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/chats",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"chats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /chats/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"topic\": \"Mua mèo Anh lông dài\",\r\n    \"users\": [\r\n        \"0092ca1d-06ef-4f90-9251-0f1bbc5471ec\",\r\n        \"91619325-746a-4660-892a-7ee83619abd3\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/chats/6398869f36dffe2ad318c912",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"chats",
+								"6398869f36dffe2ad318c912"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /chats/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/chats/6398869f36dffe2ad318c912",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"chats",
+								"6398869f36dffe2ad318c912"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "GET /comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/comments",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /comments/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/comments/639886f895315f81c6fc075e",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"comments",
+								"639886f895315f81c6fc075e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rootCommentId\": null,\r\n    \"userId\": \"01d8a259-6253-4718-a854-291493e26a9a\",\r\n    \"blogId\": \"bb2bd09b-5b24-4219-9f18-b5d58228c31d\",\r\n    \"content\": \"Mèo đẹp quá mọi người ơi!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/comments",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /comments/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rootCommentId\": null,\r\n    \"userId\": \"01d8a259-6253-4718-a854-291493e26a9a\",\r\n    \"blogId\": \"bb2bd09b-5b24-4219-9f18-b5d58228c31d\",\r\n    \"content\": \"Mèo Anh Quốc này đẹp quá mọi người ơi!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/comments/639886f895315f81c6fc075e",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"comments",
+								"639886f895315f81c6fc075e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /comments/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/comments/639886f895315f81c6fc075e",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"comments",
+								"639886f895315f81c6fc075e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "GET /messages/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/messages/639887b50d970a65d973f26e",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"messages",
+								"639887b50d970a65d973f26e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"chatId\": \"e1fdf272-727f-4969-9f08-80a3511c75ef\",\r\n    \"userId\": \"91619325-746a-4660-892a-7ee83619abd3\",\r\n    \"content\": \"Anh ơi, cho em hỏi mèo này còn bán không ạ?\",\r\n    \"status\": \"SEND\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/messages",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"messages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /messages/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"chatId\": \"e1fdf272-727f-4969-9f08-80a3511c75ef\",\r\n    \"userId\": \"91619325-746a-4660-892a-7ee83619abd3\",\r\n    \"content\": \"Anh ơi, cho em hỏi mèo Anh Quốc này còn bán không ạ?\",\r\n    \"status\": \"SEND\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/messages/639887b50d970a65d973f26e",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"messages",
+								"639887b50d970a65d973f26e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /messages/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/messages/639887b50d970a65d973f26e",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"messages",
+								"639887b50d970a65d973f26e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "GET /notifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/notifications",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /notifications/system",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/notifications/system",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"notifications",
+								"system"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /notifications/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/notifications/63988d8c19645613dc2c754a",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"notifications",
+								"63988d8c19645613dc2c754a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /notifications",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\":\"91619325-746a-4660-892a-7ee83619abd3\",\r\n    \"title\":\"Bạn đã đặt hàng thành công\",\r\n    \"content\":\"Đơn hàng của bạn đã được đặt thành công\",\r\n    \"image\":\"https://www.shutterstock.com/image-photo/adorable-red-abricot-labradoodle-dog-600w-1610553859.jpg\",\r\n    \"link\":\"https://www.shutterstock.com/image-photo/adorable-red-abricot-labradoodle-dog-600w-1610553859.jpg\",\r\n    \"type\":\"activity\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/notifications",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /notifications/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\":\"91619325-746a-4660-892a-7ee83619abd3\",\r\n    \"title\":\"Bạn đã đặt hàng không thành công\",\r\n    \"content\":\"Đơn hàng của bạn đặt không thành công\",\r\n    \"image\":\"https://www.shutterstock.com/image-photo/adorable-red-abricot-labradoodle-dog-600w-1610553859.jpg\",\r\n    \"link\":\"https://www.shutterstock.com/image-photo/adorable-red-abricot-labradoodle-dog-600w-1610553859.jpg\",\r\n    \"type\":\"activity\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/notifications/63988d8c19645613dc2c754a",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"notifications",
+								"63988d8c19645613dc2c754a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /notifications/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/notifications/63988d8c19645613dc2c754a",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"notifications",
+								"63988d8c19645613dc2c754a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "GET /products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/products",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /products/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/products/6399fc209437ff080b73f469",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"products",
+								"6399fc209437ff080b73f469"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryId",
+									"value": "639844e15d6bcd5b9be77899",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Mèo Anh Quốc",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Mèo có xuất xứ từ nước ngoài 99%, 1% còn lại là nhà nuôi",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "22000000",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"/C:/Users/DELL/OneDrive - hcmute.edu.vn/Pictures/MEME/lkam_ni_ank_nke_bb.jpg",
+										"/C:/Users/DELL/OneDrive - hcmute.edu.vn/Pictures/MEME/nice_pic_now_i_stole_it.jpg",
+										"/C:/Users/DELL/OneDrive - hcmute.edu.vn/Pictures/MEME/satboi.jpg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_api}}/products",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /products/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryId",
+									"value": "639844e15d6bcd5b9be77899",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Mèo Anh Quốc",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Mèo có xuất xứ từ nước ngoài 99%, 1% còn lại là nhà nuôi",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "22000000",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_api}}/products/6399fc209437ff080b73f469",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"products",
+								"6399fc209437ff080b73f469"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /products/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/products/639888a0720c7552d0bb007a",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"products",
+								"639888a0720c7552d0bb007a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Follow",
+					"item": [
+						{
+							"name": "GET /users/:id/followings",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}/users/6398bf981b528b0458573122/followings",
+									"host": [
+										"{{url_api}}"
+									],
+									"path": [
+										"users",
+										"6398bf981b528b0458573122",
+										"followings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users/:id/followers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}/users/6398bf981b528b0458573122/followers",
+									"host": [
+										"{{url_api}}"
+									],
+									"path": [
+										"users",
+										"6398bf981b528b0458573122",
+										"followers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Bills",
+					"item": [
+						{
+							"name": "GET /users/:id/billBuy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}/users/6398bf981b528b0458573122/billBuy",
+									"host": [
+										"{{url_api}}"
+									],
+									"path": [
+										"users",
+										"6398bf981b528b0458573122",
+										"billBuy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users/:id/billSell",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}/users/6398bf981b528b0458573122/billSell",
+									"host": [
+										"{{url_api}}"
+									],
+									"path": [
+										"users",
+										"6398bf981b528b0458573122",
+										"billSell"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Blogs",
+					"item": [
+						{
+							"name": "GET /users/:id/blogs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}/users/6398bf981b528b0458573122/blogs",
+									"host": [
+										"{{url_api}}"
+									],
+									"path": [
+										"users",
+										"6398bf981b528b0458573122",
+										"blogs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users/:id/saveBlogs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}/users/6398bf981b528b0458573122/saveBlogs",
+									"host": [
+										"{{url_api}}"
+									],
+									"path": [
+										"users",
+										"6398bf981b528b0458573122",
+										"saveBlogs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Others",
+					"item": [
+						{
+							"name": "GET /users/:id/chatJoin",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}/users/6398bf981b528b0458573122/chatJoin",
+									"host": [
+										"{{url_api}}"
+									],
+									"path": [
+										"users",
+										"6398bf981b528b0458573122",
+										"chatJoin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /users/:id/notifications",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}/users/6398bf981b528b0458573122/notifications",
+									"host": [
+										"{{url_api}}"
+									],
+									"path": [
+										"users",
+										"6398bf981b528b0458573122",
+										"notifications"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET /users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/users",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /users/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/users/63988e9c879480f9f07e32a8",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"users",
+								"63988e9c879480f9f07e32a8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /user/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"+84928712712\",\r\n    \"password\": \"abcd12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/users/login",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /users/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": {\r\n        \"street\": \"đường số 17, phường Linh Trung\",\r\n        \"town\": \"thành phố Thủ Đức\",\r\n        \"province\": \"thành phố Hồ Chí Minh\"\r\n    },\r\n    \"name\": \"Võ Nhật Phi\",\r\n    \"dob\": \"2001-04-17\",\r\n    \"gender\": \"male\",\r\n    \"email\": \"nhatphi@23mail.com\",\r\n    \"phone\": \"+84928712712\",\r\n    \"password\": \"12345678\",\r\n    \"isAdmin\": false,\r\n    \"userFollowings\": [\r\n        \"63988e9c879480f9f07e32a8\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/users/register",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /users/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"12345678\",\r\n    \"newPassword\": \"abcd12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}/users/6398bf981b528b0458573122",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"users",
+								"6398bf981b528b0458573122"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /users/:id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "address[street]",
+									"value": "đường số 17, phường Linh Trung",
+									"type": "text"
+								},
+								{
+									"key": "address[town]",
+									"value": "thành phố Thủ Đức",
+									"type": "text"
+								},
+								{
+									"key": "address[province]",
+									"value": "thành phố Hồ Chí Minh",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Nguyễn Duy Dương",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "2001-12-11T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "duyduong@123mail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+84920288871",
+									"type": "text"
+								},
+								{
+									"key": "isAdmin",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "userFollowings",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/DELL/OneDrive - hcmute.edu.vn/Pictures/Avatar_Picture/3.jfif"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_api}}/users/63988e9c879480f9f07e32a8",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"users",
+								"63988e9c879480f9f07e32a8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /users/:id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}/users/6398b3c54f6106d381cfb691",
+							"host": [
+								"{{url_api}}"
+							],
+							"path": [
+								"users",
+								"6398b3c54f6106d381cfb691"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "api",
+			"value": "/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "url_api",
+			"value": "{{url}}{{api}}",
+			"type": "string"
+		}
+	]
+}

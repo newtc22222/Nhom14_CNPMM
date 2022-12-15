@@ -25,11 +25,11 @@
     - Database: MongoDB
 
 ### Thành viên
-| MSSV         | Tên               | Công việc                        |
-|--------------|-------------------|----------------------------------|
-| 19110426     | Võ Nhật Phi       | Main page + Server models/mongos |   
-| 19110342     | Nguyễn Duy Dương  | Server routes + controllers      |   
-| 19110417     | Nguyễn Minh Nhật  | Admin page + test và and dữ liệu |
+| MSSV         | Tên               | Công việc                         |
+|--------------|-------------------|-----------------------------------|
+| 19110426     | Võ Nhật Phi       | Main page + Server models/mongos  |   
+| 19110342     | Nguyễn Duy Dương  | Server routes + controllers       |   
+| 19110417     | Nguyễn Minh Nhật  | Admin page + test và thêm dữ liệu |
 
 ---
 

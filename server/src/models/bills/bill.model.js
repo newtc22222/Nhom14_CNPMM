@@ -1,79 +1,75 @@
+const mongoose = require('mongoose');
 const Bill = require('./bill.mongo');
 
 async function getAllBills(skip, limit) {
     return await Bill
         .find()
         .sort({ createdAt: 'desc' })
-        .skip(skip)
-        .limit(limit);
+        // .skip(skip)
+        // .limit(limit)
+        .catch(err => null);
 }
 
 async function findBills(filter) {
-    return await Bill.find(filter);
+    return await Bill.find(filter)
+        .catch(err => null);
 }
 
 async function findBillWithId(billId) {
-    // return await Bill.findOne( { _id: billId } );
-    return await Bill.findById(billId);
+    return await Bill.findById(billId)
+        .catch(err => null);
 }
 
 async function findBillsWithBuyerId(buyerId) { // find bills
-    return await findBills(
-        { buyerId: buyerId }
-    );
+    return await findBills({ buyerId })
 }
 
 async function findBillsWithSellerId(sellerId) { // find bills
-    return await findBills(
-        { sellerId: sellerId }
-    );
+    return await findBills({ sellerId })
 }
 
 async function createNewBill(bill) {
-    // const newBill = new Bill(bill);
-    // await newBill.save().then(() => console.log('Create bill ok!'));
-    const {
-        buyerId, sellerId, productId, productName, productImage,
-        productPrice, productQuantity, status
-    } = bill;
+    const newBill = {
+        buyerId: mongoose.Types.ObjectId(bill.buyerId),
+        sellerId: mongoose.Types.ObjectId(bill.sellerId),
+        productId: mongoose.Types.ObjectId(bill.productId),
+        productName: bill.productName,
+        productImage: bill.productImage,
+        productPrice: bill.productPrice,
+        productQuantity: bill.productQuantity,
+        status: bill.status
+    }
 
-    await Bill.create({
-        buyerId, sellerId, productId, productName, productImage,
-        productPrice, productQuantity, status
-    }).then(() => console.log('Create bill ok!'));
+    const result = await Bill.create(newBill)
+        .catch((err) => null);
+    return result;
 }
 
-// async function saveBill(bill) {
-//     await Bill.findByIdAndUpdate({
-//         _id: bill._id,
-//     }, bill, {
-//         upsert: true
-//     });
-// }
-
 async function updateBill(bill, billId) {
-    const {
-        buyerId, sellerId, productId, productName, productImage,
-        productPrice, productQuantity, status
-    } = bill;
-    const updated = await Bill.findById(billId).update(
-        {
-            buyerId: buyerId,
-            sellerId: sellerId,
-            productId: productId,
-            productName: productName,
-            productImage: productImage,
-            productPrice: productPrice,
-            productQuantity: productQuantity,
-            status: status,
-        })
-        .then(() => console.log('Update bill ok!'))
+    const newBill = {
+        buyerId: mongoose.Types.ObjectId(bill.buyerId),
+        sellerId: mongoose.Types.ObjectId(bill.sellerId),
+        productId: mongoose.Types.ObjectId(bill.productId),
+        productName: bill.productName,
+        productImage: bill.productImage,
+        productPrice: bill.productPrice,
+        productQuantity: bill.productQuantity,
+        status: bill.status
+    }
 
-    return updated.modifiedCount === 1;
+    const result = await Bill.updateOne(
+        { _id: billId },
+        newBill
+    )
+    .catch((err) => null);
+
+    return result;
 }
 
 async function removeBill(billId) {
-    await Bill.findByIdAndRemove({ _id: billId }).then(() => console.log('Remove bill ok!'));
+    const result = await Bill.remove({ _id: billId })
+        .catch((err) => null);    
+    return result;
 }
 
 module.exports = {

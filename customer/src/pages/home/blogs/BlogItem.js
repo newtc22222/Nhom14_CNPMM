@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Card, Typography } from '@mui/material';
 import BoxImage from '../../../components/local/BoxImage';
 import BlogItemMenu from './BlogItemMenu';
+import timeCreated from '../../../helpers/calculateLastUpdateTime';
 
 const BlogItemCard = ({ blog, image, price }) => {
-    const { id, title, address, createAt } = blog;
-
-    const getTime = () => {
-        const time = Date.now() - Date.parse(createAt);
-        return time;
-    }
+    const { _id, slug, title, address, createdAt } = blog; 
 
     return (
-        <Card sx={{ maxWidth: '192px', backgroundColor: '#fff', "&:hover": { boxShadow: '0 0 5px #333' } }}>
-            <Link to={`/blogs/${id}`} style={{ textDecoration: 'none' }}>
+        <Card sx={{ maxWidth: '192px', height: '330px', backgroundColor: '#fff', "&:hover": { boxShadow: '0 0 5px #333' } }}>
+            <Link to={`/blogs/s/${slug}`} style={{ textDecoration: 'none' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px' }}>
                     <BoxImage
                         height="166px"
@@ -26,13 +22,13 @@ const BlogItemCard = ({ blog, image, price }) => {
             </Link>
             <Box sx={{ paddingLeft: '15px', paddingRight: '15px' }}>
                 <Box sx={{display: 'flex'}}> 
-                    <Link to={`/blogs/${id}`} style={{ textDecoration: 'none', width: '138px', wordWrap: 'break-word' }}>
-                        <Typography sx={{ fontSize: '0.9rem', color: '#333' }}>{title ?? "Helloadkjgfhiudahfhiusahfiuhaiufhudahuf auihfiu aiufh"} </Typography>
+                    <Link to={`/blogs/${_id}`} style={{ textDecoration: 'none', width: '138px', wordWrap: 'break-word', height: '65px' }}>
+                        <Typography sx={{ fontSize: '0.9rem', color: '#333' }}>{title ?? "Hello"} </Typography>
                     </Link>
                     <BlogItemMenu />
                 </Box>
                 <Typography sx={{ fontSize: '0.9rem', fontWeight: 'bold', color: '#D0021B' }}>{(price ?? "50.000") + " đ"}</Typography>
-                <Typography sx={{ fontSize: '0.6rem', color: '#777', marginTop: '10px', marginBottom: '15px' }}>{"1 giờ trước - " + address}</Typography>
+                <Typography sx={{ fontSize: '0.6rem', color: '#777', marginTop: '10px', marginBottom: '15px' }}>{timeCreated(createdAt) + " - " + address}</Typography>
             </Box>
         </Card>
     )

@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { Avatar, Box, Breadcrumbs, Button, Typography } from '@mui/material';
 import BlogTabs from './BlogTabs/BlogTabs';
+import UserContext from '../../contexts/UserContext';
 
 const buttonStyle = {
   borderColor: '#FF8C00',
@@ -16,7 +17,12 @@ const buttonStyle = {
 };
 
 const Blog = () => {
-  const name = null;
+  const auth = useContext(UserContext);
+  const user = auth.user;
+  
+  if(!window.sessionStorage.getItem("userId")) {
+    return <Navigate to="/login"/>;
+  }
 
   return (
     <Box>
@@ -31,7 +37,7 @@ const Blog = () => {
           <Avatar sx={{ width: 80, height: 80 }} alt="user avatar" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" />
           <Box sx={{ marginLeft: '20px' }}>
             <Typography sx={{ color: '#333', fontWeight: '600', marginTop: '10px' }}>
-              {name ?? "Tên của bạn"} 
+              {user?.name ?? "Tên của bạn"} 
             </Typography>
             <Box>
               <Typography>

@@ -1,201 +1,333 @@
-import React, { useState } from 'react';
-import { Box, Button, InputLabel, MenuItem, Typography, TextField, Select } from '@mui/material';
+import React, { useContext, useRef, useState } from "react";
+import {
+  Box,
+  Button,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Typography,
+  TextField,
+  Select,
+  Avatar,
+} from "@mui/material";
+import UserContext from "../../../contexts/UserContext";
+import convertImage from "../../../helpers/convertImage";
 
 const textFieldStyle = {
-    width: '100%',
-    marginBottom: '20px'
-}
+  width: "100%",
+  marginBottom: "20px",
+};
 
 const genderList = [
-    {
-        value: 'male',
-        label: 'Nam'
-    },
-    {
-        value: 'female',
-        label: 'Nữ'
-    },
-    {
-        value: 'other',
-        label: 'Khác'
-    }
+  {
+    value: "male",
+    label: "Nam",
+  },
+  {
+    value: "female",
+    label: "Nữ",
+  },
+  {
+    value: "other",
+    label: "Khác",
+  },
 ];
 
 const ProfileBox = () => {
-    const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false);
 
-    const user = {};
-    const {name, dob, gender, address, email, phone} = user;
-    // const {street, town, province} = address;
+  console.log(editMode);
 
-    const handleEditMode = () => {
-        if (editMode) {
-            console.log(`save`);
-        }
-        setEditMode(!editMode);
+  const auth = useContext(UserContext);
+  const user = auth.user;
+
+  const [userAvatar, setUserAvatar] = useState({
+    avatar: user.avatar ?? "",
+    file: null,
+    filename: "",
+  });
+  const [userGender, setUserGender] = useState(user.gender);
+  const nameRef = useRef();
+  const dobRef = useRef();
+  const addressStreetRef = useRef();
+  const addressTownRef = useRef();
+  const addressProvinceRef = useRef();
+  const emailRef = useRef();
+  const phoneRef = useRef();
+
+  const handleChange = (event) => {
+    setUserGender(event.target.value);
+  };
+
+  const handleEditMode = async () => {
+    if (editMode) {
+      // const newInformation = {
+      //   name: nameRef.current.value,
+      //   dob: dobRef.current.value,
+      //   gender: userGender,
+      //   address: {
+      //     street: addressStreetRef.current.value,
+      //     town: addressTownRef.current.value,
+      //     province: addressProvinceRef.current.value,
+      //   },
+      //   email: emailRef.current.value,
+      //   phone: "+84" + phoneRef.current.value.slice(1),
+      // };
+      // console.log(newInformation);
+
+      // if (
+      //   newInformation.name.trim() === "" ||
+      //   newInformation.name === null || //name
+      //   new Date(newInformation.dob).getYear() >
+      //     new Date().getFullYear() - 16 || //dob
+      //   newInformation.address.street.trim() === "" ||
+      //   newInformation.address.street === null || // street
+      //   newInformation.address.town.trim() === "" ||
+      //   newInformation.address.town === null || //town
+      //   newInformation.address.province.trim() === "" ||
+      //   newInformation.address.province === null || //province
+      //   newInformation.phone.trim() === "" ||
+      //   newInformation.phone === null || // phone
+      //   newInformation.password.length < 8
+      // ) {
+      //   alert("Có thông tin chưa hợp lệ!");
+      // }
+
+      const userFormData = new FormData();
+      // const avatarBuffer = new TextEncoder().encode(userAvatar.avatar); // Convert Buffer
+      userFormData.append("avatar", userAvatar.file, userAvatar.filename);
+      userFormData.append("name", nameRef.current.value);
+      userFormData.append("gender", userGender);
+      userFormData.append("dob", dobRef.current.value);
+      userFormData.append("address[street]", addressStreetRef.current.value);
+      userFormData.append("address[town]", addressTownRef.current.value);
+      userFormData.append(
+        "address[province]",
+        addressProvinceRef.current.value
+      );
+      userFormData.append("email", emailRef.current.value);
+      userFormData.append("phone", phoneRef.current.value);
+      await auth.updateInformation(userFormData, user._id);
+      setEditMode((prev) => !prev);
+    } else {
+      setEditMode((prev) => !prev);
     }
+  };
 
-    const [userGender, setUserGender] = useState(gender || genderList[0].value);
+  const handleSave = async () => {};
 
-    const handleChange = (event) => {
-        setUserGender(event.target.value);
-    };
+  return (
+    <Box sx={{ marginTop: "20px", boxShadow: "0 0 5px #777", padding: "10px" }}>
+      <Typography sx={{ fontWeight: "bold" }}>Thông tin cá nhân</Typography>
+      <hr style={{ opacity: "0.4" }} />
+      <Grid container>
+        <Grid item xs={4}>
+          {userAvatar ? (
+            <Avatar
+              sx={{ width: "18vw", height: "18vw" }}
+              src={
+                convertImage(userAvatar?.avatar.data?.data) || userAvatar.avatar
+              }
+            />
+          ) : (
+            <Avatar sx={{ width: "18vw", height: "18vw" }} />
+          )}
+          <Button
+            variant="outlined"
+            component="label"
+            sx={{
+              width: "18vw",
+              marginTop: "20px",
+              fontWeight: "bold",
+              backgroundColor: "white",
+              color: "orangered",
+              borderColor: "orangered",
+              "&:hover": {
+                backgroundColor: "orangered",
+                borderColor: "orangered",
+                color: "white",
+              },
+            }}
+            disabled={!editMode}
+          >
+            Chọn hình ảnh
+            <input
+              type="file"
+              hidden
+              onChange={(e) => {
+                if (e.target.files && e.target.files[0]) {
+                  let reader = new FileReader();
+                  reader.onload = (event) => {
+                    setUserAvatar({
+                      avatar: event.target.result,
+                      file: e.target.files[0],
+                      filename: e.target.files[0].name,
+                    });
+                  };
+                  reader.readAsDataURL(e.target.files[0]);
+                }
+              }}
+            />
+          </Button>
+        </Grid>
+        <Grid item xs={8}>
+          <form
+            style={{
+              padding: "10px 30px",
+              boxShadow: "0 0 2px #333",
+            }}
+          >
+            <TextField
+              required
+              id="name"
+              label="Họ và tên"
+              defaultValue={user.name}
+              type="text"
+              inputRef={nameRef}
+              variant="standard"
+              disabled={!editMode}
+              sx={textFieldStyle}
+            />
+            <TextField
+              required
+              id="dob"
+              label="Ngày sinh"
+              type="date"
+              inputRef={dobRef}
+              variant="standard"
+              disabled={!editMode}
+              defaultValue={new Date(user.dob).toISOString().slice(0, 10)}
+              sx={textFieldStyle}
+            />
+            <InputLabel sx={{ fontSize: "0.8rem" }}>Giới tính *</InputLabel>
+            <Select
+              id="gender"
+              label="Giới tính"
+              defaultValue={userGender}
+              variant="standard"
+              disabled={!editMode}
+              sx={textFieldStyle}
+              onChange={(e) => handleChange(e)}
+            >
+              {genderList.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </Select>
 
-    return (
-        <Box sx={{ marginTop: '20px', boxShadow: '0 0 5px #777', padding: '10px' }}>
-            <Typography sx={{ fontWeight: 'bold' }}>Thông tin cá nhân</Typography>
-            <hr style={{ opacity: '0.4' }} />
-            <form
-                method="post"
-                action="/register"
-                style={{
-                    padding: '10px 30px',
-                    boxShadow: '0 0 2px #333',
-                    marginRight: '40%'
-                }}>
-                <TextField
-                    required
-                    id="name"
-                    label="Họ và tên"
-                    value="Nguyễn Văn A"
-                    type="text"
-                    variant="standard"
-                    disabled={!editMode}
-                    sx={textFieldStyle}
-                />
-                <TextField
-                    required
-                    id="dob"
-                    label="Ngày sinh"
-                    type="date"
-                    variant="standard"
-                    disabled={!editMode}
-                    value={"2000-01-01"}
-                    sx={textFieldStyle}
-                />
-                <InputLabel sx={{ fontSize: '0.8rem' }}>Giới tính *</InputLabel>
-                <Select
-                    id="gender"
-                    label="Giới tính"
-                    value={userGender}
-                    variant="standard"
-                    disabled={!editMode}
-                    sx={textFieldStyle}
-                    onChange={(e) => handleChange(e)}
-                >
-                    {genderList.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </Select>
+            <Box>
+              <InputLabel sx={{ fontSize: "0.8rem" }}>Địa chỉ *</InputLabel>
+              <TextField
+                required
+                id="street"
+                label="Số nhà, đường, phường/xã/ấp"
+                name="street"
+                defaultValue={user.address.street ?? ""}
+                type="text"
+                inputRef={addressStreetRef}
+                variant="standard"
+                disabled={!editMode}
+                sx={textFieldStyle}
+              />
+              <TextField
+                required
+                id="town"
+                label="Thị trấn, huyện, thị xã, thành phố"
+                name="town"
+                defaultValue={user.address.town ?? ""}
+                type="text"
+                inputRef={addressTownRef}
+                variant="standard"
+                disabled={!editMode}
+                sx={textFieldStyle}
+              />
+              <TextField
+                required
+                id="province"
+                label="Tỉnh, thành phố trực thuộc quốc gia"
+                name="province"
+                defaultValue={user.address.province ?? ""}
+                type="text"
+                inputRef={addressProvinceRef}
+                variant="standard"
+                disabled={!editMode}
+                sx={textFieldStyle}
+              />
+            </Box>
 
-                <Box>
-                    <InputLabel sx={{ fontSize: '0.8rem' }}>Địa chỉ *</InputLabel>
-                    <TextField
-                        required
-                        id="street"
-                        label="Số nhà, đường, phường/xã/ấp"
-                        name="street"
-                        // value={street ?? ""}
-                        type="text"
-                        variant="standard"
-                        disabled={!editMode}
-                        sx={textFieldStyle}
-                    />
-                    <TextField
-                        required
-                        id="town"
-                        label="Thị trấn, huyện, thị xã, thành phố"
-                        name="town"
-                        // value={town ?? ""}
-                        type="text"
-                        variant="standard"
-                        disabled={!editMode}
-                        sx={textFieldStyle}
-                    />
-                    <TextField
-                        required
-                        id="province"
-                        label="Tỉnh, thành phố trực thuộc quốc gia"
-                        name="province"
-                        // value={province ?? ""}
-                        type="text"
-                        variant="standard"
-                        disabled={!editMode}
-                        sx={textFieldStyle}
-                    />
-                </Box>
-
-                <TextField
-                    id="email"
-                    label="Email"
-                    value="something@abc.com"
-                    type="email"
-                    variant="standard"
-                    disabled={!editMode}
-                    sx={textFieldStyle}
-                />
-                <TextField
-                    required
-                    id="phone"
-                    label="Số điện thoại"
-                    value="0839918872"
-                    type="number"
-                    variant="standard"
-                    disabled={!editMode}
-                    sx={textFieldStyle}
-                />
-                {/* <TextField
-                    required
-                    title="Mật khẩu cần có ít nhất 8 ký tự, bao gồm chữ cái thường, chữ cái in hoa, chữ số và ký tự đặc biệt"
-                    id="password"
-                    label="Mật khẩu"
-                    type="password"
-                    variant="standard"
-                    sx={textFieldStyle}
-                /> */}
-                <Box sx={{ display: 'flex' }}>
-                    <Button
-                        variant="outlined"
-                        sx={{
-                            width: '45%',
-                            marginRight: '10%',
-                            fontWeight: 'bold',
-                            backgroundColor: 'white',
-                            color: 'orangered',
-                            borderColor: 'orangered',
-                            '&:hover': {
-                                backgroundColor: 'orangered',
-                                borderColor: 'orangered',
-                                color: 'white'
-                            }
-                        }}
-                        onClick={handleEditMode}>
-                        {editMode ? "Lưu thông tin" : "Chỉnh sửa"}
-                    </Button>
-                    <Button
-                        variant="outlined"
-                        disabled={!editMode}
-                        sx={{
-                            width: '45%',
-                            fontWeight: 'bold',
-                            backgroundColor: 'white',
-                            color: 'orangered',
-                            borderColor: 'orangered',
-                            '&:hover': {
-                                backgroundColor: 'orangered',
-                                borderColor: 'orangered',
-                                color: 'white'
-                            }
-                        }}
-                        onClick={() => { setEditMode(!editMode) }}>
-                        Hủy
-                    </Button>
-                </Box>
-            </form>
-        </Box>
-    )
-}
+            <TextField
+              id="email"
+              label="Email"
+              defaultValue={user.email ?? ""}
+              type="email"
+              inputRef={emailRef}
+              variant="standard"
+              disabled={!editMode}
+              sx={textFieldStyle}
+            />
+            <TextField
+              required
+              id="phone"
+              label="Số điện thoại"
+              defaultValue={user.phone.replace("+84", "0") ?? ""}
+              type="number"
+              variant="standard"
+              aria-readonly
+              inputRef={phoneRef}
+              disabled={!editMode}
+              sx={textFieldStyle}
+            />
+            <Box sx={{ display: "flex" }}>
+              <Button
+                variant="outlined"
+                sx={{
+                  width: "45%",
+                  marginRight: "10%",
+                  fontWeight: "bold",
+                  backgroundColor: "white",
+                  color: "orangered",
+                  borderColor: "orangered",
+                  "&:hover": {
+                    backgroundColor: "orangered",
+                    borderColor: "orangered",
+                    color: "white",
+                  },
+                }}
+                onClick={handleEditMode}
+              >
+                {editMode ? "Lưu thông tin" : "Chỉnh sửa"}
+              </Button>
+              <Button
+                variant="outlined"
+                disabled={!editMode}
+                sx={{
+                  width: "45%",
+                  fontWeight: "bold",
+                  backgroundColor: "white",
+                  color: "orangered",
+                  borderColor: "orangered",
+                  "&:hover": {
+                    backgroundColor: "orangered",
+                    borderColor: "orangered",
+                    color: "white",
+                  },
+                }}
+                onClick={() => {
+                  setUserAvatar((prev) => {
+                    return { avatar: user.avatar ?? "", file: null, filename: "" };
+                  });
+                  setEditMode((prev) => !prev);
+                }}
+              >
+                Hủy
+              </Button>
+            </Box>
+          </form>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
 
 export default ProfileBox;

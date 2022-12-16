@@ -42,13 +42,13 @@ export default function InvoiceMenu() {
                 onClose={handleClose}
                 TransitionComponent={Fade}
             >
-                <Link to="/" style={{ textDecoration: 'none', color: '#222' }}>
+                <Link to="/bills/buy" style={{ textDecoration: 'none', color: '#222' }}>
                     <MenuItem>
                         <ShoppingBagIcon />
                         <span style={{ paddingLeft: '10px' }}>Đơn mua</span>
                     </MenuItem>
                 </Link>
-                <Link to="/" style={{ textDecoration: 'none', color: '#222' }}>
+                <Link to="/bills/sell" style={{ textDecoration: 'none', color: '#222' }}>
                     <MenuItem>
                         <SellIcon />
                         <span style={{ paddingLeft: '10px' }}>Đơn bán</span>

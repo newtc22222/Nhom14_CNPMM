@@ -60,7 +60,7 @@ const CategoryOption = () => {
                     }}
                 />
                 {categoriesFilter.map((option) => (
-                  <MenuItem key={option.id} value={option.id} sx={{fontSize: '0.7rem'}}>
+                  <MenuItem key={option._id} value={option._id} sx={{fontSize: '0.7rem'}}>
                     {option.type + " - " + option.subtype}
                   </MenuItem>
                 ))}

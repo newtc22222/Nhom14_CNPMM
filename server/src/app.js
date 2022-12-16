@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
-//const api = require('./routers/api');
+const api = require('./routers/api');
 
 const app = express();
 

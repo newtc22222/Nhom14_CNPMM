@@ -1,24 +1,3 @@
-<<<<<<< Updated upstream
-const UserModel = require('../models/users/user.mongo')
-//const {generateToken} = require('../utils/util')
-const asyncHandler = require('express-async-handler')
-
-const getAllUser = asyncHandler(async (req, res) => {
-    const users = await UserModel.find({})
-    res.send(users)
-})
-const getUserById = asyncHandler(async (req, res) => {
-    const user = await UserModel.findById({_id: req.params.id})
-    if(user){
-        res.send(user)
-    }else{
-        res.send({message: 'user không tồn tại'})
-    }
-})
-const register = asyncHandler(async (req, res) => {
-    const user = new UserModel({
-        // _id: req.body._id,
-=======
 const fs = require('fs');
 const path = require('path');
 
@@ -92,7 +71,6 @@ async function httpGetFollowers (req, res) {
 
 async function httpCreateNewUser (req, res) {
     const newUser = {
->>>>>>> Stashed changes
         name: req.body.name,
         dob: req.body.dob,
         gender: req.body.gender,
@@ -104,71 +82,6 @@ async function httpCreateNewUser (req, res) {
         email: req.body.email,
         phone: req.body.phone,
         password: req.body.password,
-<<<<<<< Updated upstream
-        isAdmin: false,
-        userFollowings: req.body.userFollowings
-    });
-    const createUser = await user.save();
-    if (createUser) {
-        return res
-          .status(201)
-          .send({ message: "Tạo user thành công", data: createUser });
-      } else {
-        res.send("Không thể tạo user");
-      }
-})
-const login = asyncHandler(async (req, res) => {
-    const user = await UserModel.findOne({email: req.body.email, password: req.body.password})
-    if(user){ 
-        res.send({
-            _id: user._id,
-            name: user.name,
-            dob: user.dob,
-            gender: user.gender,
-            address: user.address,
-            email: user.email,
-            phone: user.phone,
-            password: user.password,
-            isAdmin: user.isAdmin,
-            userFollowings: user.userFollowings,
-            //token: generateToken(user),
-        });
-    }else{
-        res.status(401).send({message: "Sai tài khoản hoặc mật khẩu"})
-    }
-})
-const UpdateUser = asyncHandler(async (req, res) => {
-    const _id = req.params.id;
-    const user = await UserModel.findById(_id);
-    if (user) {
-        user.name = req.body.name;
-        user.dob = req.body.dob;
-        user.gender = req.body.gender;
-        user.address.street = req.body.address.street;
-        user.address.town = req.body.address.town;
-        user.address.province = req.body.address.province;
-        user.email = req.body.email;
-        user.phone = req.body.phone;
-        user.password = req.body.password;
-        user.isAdmin = false;
-        user.userFollowings = req.body.userFollowings;
-      const updateUser = await user.save();
-      if (updateUser) {
-        res.send("Cập nhật người dùng thành công");
-      }
-    }
-  
-    return res.send("Cập nhật người dùng thất bại");
-});
-const DeleteUser = asyncHandler(async (req, res) => {
-    const user = await UserModel.findById({_id: req.params.id})
-
-    if(user){
-        await user.remove()
-        res.send({message: 'xóa user thành công'})
-    }else{
-        res.send({message: 'user không tồn tại'})
-=======
         isAdmin: req.body.isAdmin,
         userFollowings: []
     }    
@@ -244,7 +157,6 @@ async function httpDeleteUser (req, res) {
     
     if(!oldUser) {
         return res.status(404).json({ error: "User not found!"});
->>>>>>> Stashed changes
     }
 
     const result = await deleteUser(userId);
@@ -255,16 +167,6 @@ async function httpDeleteUser (req, res) {
 }
 
 module.exports = {
-<<<<<<< Updated upstream
-    getAllUser,
-    getUserById,
-    register,
-    UpdateUser,
-    login,
-    DeleteUser
-};
-
-=======
     httpGetAllUsers,
     httpFindUserWithId,
     httpSystemLogin,
@@ -275,4 +177,3 @@ module.exports = {
     httpUpdatePassword,
     httpDeleteUser
 }
->>>>>>> Stashed changes

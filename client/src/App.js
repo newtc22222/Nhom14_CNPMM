@@ -9,6 +9,7 @@ function App() {
       <Route path="/" element={<LayoutAdmin/>}>
         <Route path='*' element={<Page404/>}/>
       </Route>
+      <Route path="/login" element={<LayoutAdmin/>}></Route>
     </Routes>
   );
 }

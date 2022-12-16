@@ -10,13 +10,12 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
-  Pagination,
   Paper,
   Stack,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import avt from "../../../images/user.png";
+import human from "../../../images/human.png";
 import apiUsers from "../../apis/users.api";
 import apiProducts from "../../apis/products.api";
 import apiBills from "../../apis/bills.api";
@@ -159,7 +158,7 @@ const Dashboard = ({ setSelectedLink, link }) => {
                   <Box key={user.id}>
                     <ListItem>
                       <ListItemAvatar>
-                        <Avatar alt={user?.name} src={avt} />
+                        <Avatar alt={user?.name} src={human} />
                       </ListItemAvatar>
                       <ListItemText
                         primary={user?.name}
@@ -199,7 +198,7 @@ const Dashboard = ({ setSelectedLink, link }) => {
                       <ListItemAvatar>
                         <Avatar
                           alt={item?.name}
-                          //src={item?.image[0]}
+                          //src={item?.images[0]}
                           variant="rounded"
                         />
                       </ListItemAvatar>
@@ -216,9 +215,9 @@ const Dashboard = ({ setSelectedLink, link }) => {
           </List>
         </Box>
       </Paper>
-      {/* <Paper elevation={3} sx={{p:2, gridColumn: "1/3"}}>
+      <Paper elevation={3} sx={{p:2, gridColumn: "1/3"}}>
         <Chart/>
-      </Paper>   */}
+      </Paper>  
       {/* <Paper elevation={3} sx={{p:2, gridColumn: "1/3"}}>
         <AreaChartAdmin/> 
       </Paper> */}

@@ -38,19 +38,6 @@ const Products = ({ setSelectedLink, link }) => {
     setDeleteId(selectedRowsData[0]?._id);
   };
 
-  // const getImage = async(param) =>{
-  //   //console.log(param.id);
-  //   const imageArr = await apiProducts.getProductImage(param.id);
-  //   // console.log(imageArr[0]);
-  //   if(imageArr[0]){
-  //     const b64 = btoa(
-  //         String.fromCharCode(...new Uint8Array(imageArr[0]?.data.data))
-  //     );
-  //     return JSON.stringify({source :`data:image/png;base64,${b64}`})
-  //   }
-  //   return JSON.stringify({source:""});
-
-  // }
 
   const handleDelete = () => {
     if (open === true) {
@@ -86,21 +73,18 @@ const Products = ({ setSelectedLink, link }) => {
         field: "images",
         headerName: "Avatar",
         width: 60,
-        // renderCell: async (param) => {
-        //   const source = await getImage(param);
+        renderCell: async (param) => {
+          console.log(param);
+            // <Avatar src={source.source}
+            <Avatar src={param[0]?.images[0]} />
+        },
+        // renderCell: (param) => {
         //   // console.log(source);
         //   return (
         //     // <Avatar src={source.source}
         //     <Avatar src={avt} />
         //   );
         // },
-        renderCell: (param) => {
-          // console.log(source);
-          return (
-            // <Avatar src={source.source}
-            <Avatar src={avt} />
-          );
-        },
         sortable: false,
         filterable: false,
       },

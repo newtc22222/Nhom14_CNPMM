@@ -4,7 +4,7 @@ import { DataGrid, gridClasses } from "@mui/x-data-grid";
 import apiUsers from "../../apis/users.api";
 import moment from "moment";
 import { grey } from "@mui/material/colors";
-import avt from "../../../images/user.png";
+import avt from "../../../images/human.png";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";

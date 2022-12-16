@@ -22,7 +22,7 @@ import {
 } from "@mui/icons-material";
 import CategorySharpIcon from "@mui/icons-material/CategorySharp";
 import DevicesOtherIcon from '@mui/icons-material/DevicesOther';
-import user from "../../images/user.png";
+import avt from "../../images/avt.png";
 import logoshop from "../../images/logo.png";
 
 const drawerWidth = 240;
@@ -152,7 +152,7 @@ const Slider = ({ open, setOpen }) => {
         <Box sx={{ mx: "auto", mt: 3, mb: 1 }}>
           <Tooltip title={"Avatar"}>
             <Avatar
-              src={user}
+              src={avt}
             //   src={currentUser?.photoURL}
               {...(open && { sx: { width: 100, height: 100 } })}
             />
@@ -160,7 +160,7 @@ const Slider = ({ open, setOpen }) => {
         </Box>
         <Box sx={{ textAlign: "center" }}>
           {/* {open && <Typography>{currentUser?.name}</Typography>} */}
-          {open && <Typography>Nguyễn Duy Dương</Typography>}
+          {open && <Typography></Typography>}
           {/* <Typography variant="body2">{currentUser?.role || 'role'}</Typography> */}
           <Typography variant="body2"> {"Admin"}</Typography>
           {open && (

@@ -1,6 +1,6 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-export const apiCategories = {
+const apiCategories = {
     getAllCategories : async () => {
         const response = await fetch(
             `${BASE_URL}/categories`,
@@ -16,6 +16,10 @@ export const apiCategories = {
             `${BASE_URL}/categories`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(category)
             }
         );
         return handleResponse(response);
@@ -45,3 +49,4 @@ export const apiCategories = {
         return handleResponse(response);
     }
 }
+export default apiCategories;

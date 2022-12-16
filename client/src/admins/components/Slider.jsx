@@ -21,8 +21,9 @@ import {
   PeopleAlt,
 } from "@mui/icons-material";
 import CategorySharpIcon from "@mui/icons-material/CategorySharp";
-import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
+import DevicesOtherIcon from '@mui/icons-material/DevicesOther';
 import user from "../../images/user.png";
+import logoshop from "../../images/logo.png";
 
 const drawerWidth = 240;
 
@@ -100,7 +101,7 @@ const Slider = ({ open, setOpen }) => {
     },
     {
       title: "Products",
-      icon: <CatchingPokemonIcon />,
+      icon: <DevicesOtherIcon />,
       link: "products",
       component: <Products {...{ setSelectedLink, link: 'products' }} />,
     },
@@ -112,6 +113,7 @@ const Slider = ({ open, setOpen }) => {
     <>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
+            <img alt="Logo" src={logoshop}  width={150} height={30} /> 
           <IconButton onClick={() => setOpen(false)}>
             <ChevronLeft />
           </IconButton>

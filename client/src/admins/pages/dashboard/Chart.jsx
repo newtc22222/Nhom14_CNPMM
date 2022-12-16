@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import React, { useEffect, useState } from 'react';
-import { apiProducts } from '../../apis/products.api';
+import React, { useEffect, useState } from "react";
+import { apiProducts } from "../../apis/products.api";
 import { apiCategories } from "../../apis/categories.api";
 // const data = [
 //   { name: "Group A", value: 400 },
@@ -39,55 +39,57 @@ const renderCustomizedLabel = ({
   );
 };
 export default function Chart() {
-    const[categories, setCategories] = useState([]);
-    const[products, setProducts] = useState([]);
-    var type = [];
-    const[sum, setSum] = useState(0)
-    
-    useEffect(()=>{
-        const getCategories = async () => {
-            const response = await apiCategories.getAllCategories();
-            //console.log(response);
-            setCategories(response);      
-        };
-        getCategories();
 
-        const getProducts = async (cateId) => {
-            const response = await apiProducts.getAllProducts(); 
-            setProducts(response); 
-        };
-        getProducts();
+  // const [categories, setCategories] = useState([]);
+  // const [products, setProducts] = useState([]);
+  // var type = [];
+  // const [sum, setSum] = useState(0);
 
-        const addTypes = () =>{
-            var temp = 0;
-            for(let i =0;i < categories.length; i++){
-                var s = 0;       
-                for (let j = 0; j < products.length; j++){     
-                    if(categories[i].id===products[j].categoryId){
-                        s=s+1;
-                        setSum(s);
-                    }
-                }
-                let param = {
-                    id: temp,
-                    total: sum,
-                    categogy: categories[i].subtype,
-                };
-                type.push(param);
-                temp++;
-            }
-            console.log(type);
-        }
-        addTypes();                  
-    },[])
+  // const addTypes = () => {
+  //   var temp = 0;
+  //   for (let i = 0; i < categories.length; i++) {
+  //     var s = 0;
+  //     for (let j = 0; j < products.length; j++) {
+  //       if (categories[i].id === products[j].categoryId) {
+  //         s = s + 1;
+  //         setSum(s);
+  //       }
+  //     }
+  //     let param = {
+  //       id: temp,
+  //       total: sum,
+  //       categogy: categories[i].subtype,
+  //     };
+  //     type.push(param);
+  //     temp++;
+  //   }
+  //   console.log(type);
+  // };
+
+  // const getCategories = async () => {
+  //   const response = await apiCategories.getAllCategories();
+  //   setCategories(response);
+  // };
+
+  // const getProducts = async (cateId) => {
+  //   const response = await apiProducts.getAllProducts();
+  //   setProducts(response);
+  // };
+
+  useEffect(() => {
+    // getCategories();
+    // getProducts();
+    // addTypes();
+  }, []);
   return (
-    <Box       
-        sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        flexWrap: 'wrap',
-      }}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+        flexWrap: "wrap",
+      }}
+    >
       {/* <PieChart width={200} height={200}>
         <Pie
           data={data}

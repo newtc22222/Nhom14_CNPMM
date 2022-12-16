@@ -1,5 +1,7 @@
 import { Group} from '@mui/icons-material';
-import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
+import DvrIcon from '@mui/icons-material/Dvr';
+import PaidIcon from '@mui/icons-material/Paid';
+import DevicesOtherIcon from '@mui/icons-material/DevicesOther';
 import {
   Avatar,
   Box,
@@ -8,17 +10,20 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  Pagination,
   Paper,
+  Stack,
   Typography,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import avt from "../../../images/user.png";
-import { apiUsers } from '../../apis/users.api';
-import { apiProducts } from '../../apis/products.api';
-import { apiBills } from '../../apis/bills.api';
-import { apiBlogs } from '../../apis/blogs.api';
+import apiUsers from '../../apis/users.api';
+import apiProducts from '../../apis/products.api';
+import apiBills from '../../apis/bills.api';
+import apiBlogs from '../../apis/blogs.api';
 import moment from "moment";
 import Chart from "./Chart";
+import AreaChartAdmin from './AreaChartAdmin';
  
 const Dashboard= ({ setSelectedLink, link })=> {
 
@@ -26,6 +31,9 @@ const Dashboard= ({ setSelectedLink, link })=> {
   const [products, setProducts] = useState([]);
   const [bills, setBills] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  // const [page, setPage] = useState(1);
+  // const [totalPage, setTotalPage] = useState(1);
+  // const size = 5
 
 
   useEffect(() => {
@@ -34,6 +42,7 @@ const Dashboard= ({ setSelectedLink, link })=> {
     const getUsers = async () => {
       const response = await apiUsers.getAllUsers();
       // console.log(response);
+      //setTotalPage(Math.ceil(response.length / size));
       setUsers(response);    
     };
     getUsers();
@@ -59,6 +68,10 @@ const Dashboard= ({ setSelectedLink, link })=> {
     };
     getBlogs();
   }, []);
+
+  // const handleChangePage = (event, newValue) => {
+  //   setPage(newValue);
+  // };
 
   const TotalBills= () => {
     let total = 0;
@@ -105,7 +118,7 @@ const Dashboard= ({ setSelectedLink, link })=> {
             justifyContent: 'center',
           }}
         >
-          <CatchingPokemonIcon sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
+          <DevicesOtherIcon sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
           <Typography variant="h4">{products.length}</Typography>
         </Box>
       </Paper>
@@ -119,7 +132,7 @@ const Dashboard= ({ setSelectedLink, link })=> {
             justifyContent: 'center',
           }}
         >
-          <Group sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
+          <DvrIcon sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
           <Typography variant="h4">{blogs.length}</Typography>
         </Box>
       </Paper>
@@ -132,7 +145,7 @@ const Dashboard= ({ setSelectedLink, link })=> {
             justifyContent: 'center',
           }}
         >
-          <CatchingPokemonIcon sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
+          <PaidIcon sx={{ height: 100, width: 100, opacity: 0.3, mr: 1 }} />
           <Typography variant="h4">{format(TotalBills())} VND</Typography>
         </Box>
       </Paper>
@@ -157,24 +170,36 @@ const Dashboard= ({ setSelectedLink, link })=> {
               </Box>
             ))}
           </List>
+          {/* {totalPage > 1 ? (
+              <Stack spacing={2} mt="10px">
+                <Pagination
+                  count={totalPage}
+                  page={page}
+                  onChange={handleChangePage}
+                  color="primary"
+                />
+              </Stack>
+            ) : (
+              <></>
+            )} */}
         </Box> 
         <Divider sx={{ mt: 3, mb: 3, opacity: 0.7 }} />
         <Box>
           <Typography>Recently added Products</Typography>
-          <List>
+          <List >
             {products.map((item, i) => (
               <Box key={item.id}>
                 <ListItem>
                   <ListItemAvatar>
                     <Avatar
                       alt={item?.name}
-                      src={item?.images[0]}
+                      //src={item?.image[0]}
                       variant="rounded"
                     />
                   </ListItemAvatar>
                   <ListItemText
                     primary={item?.name}
-                    secondary={`Price: ${item.price}`}
+                    secondary={`Price: ${format(item.price)} VND`}
                   />
                 </ListItem>
                 {i !== 3 && <Divider variant="inset" />}
@@ -183,9 +208,12 @@ const Dashboard= ({ setSelectedLink, link })=> {
           </List>
         </Box> 
       </Paper>
-      <Paper elevation={3} sx={{p:2, gridColumn: "1/3"}}>
-      <Chart/>
-      </Paper>  
+      {/* <Paper elevation={3} sx={{p:2, gridColumn: "1/3"}}>
+        <Chart/>
+      </Paper>   */}
+      {/* <Paper elevation={3} sx={{p:2, gridColumn: "1/3"}}>
+        <AreaChartAdmin/> 
+      </Paper> */}
     </Box>
   )
 };

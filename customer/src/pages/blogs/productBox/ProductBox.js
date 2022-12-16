@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Box } from '@mui/material';
-import apiProducts from "../../../apis/product.api";
+import React from 'react';
+import { Box, Typography } from '@mui/material';
+
+const formatPrice = (price) => {
+  let dollarUSLocale = Intl.NumberFormat('en-US');
+  return dollarUSLocale.format(price);
+}
 
 const ProductBox = ({productId}) => {
-  const [product, setProduct] = useState();
-  console.log(product);
-
-  useEffect(() => {
-    const callApiProduct= async () => {
-      if (productId) {
-        const product = await apiProducts.getProductWithId(
-          productId
-        );
-        setProduct(product);
-      }
-    };
-
-    return () => {
-      callApiProduct();
-    };
-  }, []);
-
-  return (
-    <Box>
-        
-    </Box>
-  )
+  if(productId) {
+    const {name, price, description} = productId
+    return (
+      <Box sx={{padding: '15px', marginTop:'10px', boxShadow: '0 0 2px #777'}}>
+          <Typography sx={{color: '#FF8C00', fontWeight: 'bold', fontSize:'1.2rem'}}>{name}</Typography>
+          <Typography sx={{color: 'red', fontWeight: 'bold'}}>{formatPrice(price) + " đồng"}</Typography>
+          <Typography sx={{color: '#333', fontWeight: ''}}>{description}</Typography>
+      </Box>
+    )
+  }
+  return <Box></Box>;
 }
 
 export default ProductBox;

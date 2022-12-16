@@ -29,7 +29,7 @@ const BlogsBox = () => {
                         <Grid item xs={2} key={blog._id}>
                             <BlogItemCard
                                 blog={blog}
-                                image="https://thienvu.com.vn/image/cache/catalog/Loa%20di%20%C4%91%E1%BB%99ng/loa-di-dong-portable-jbl-eon-612/loa-di-dong-portable-jbl-eon-612-2-400x400.jpg"
+                                image={blog.productId.images[0]}
                             />
                         </Grid>
                     );

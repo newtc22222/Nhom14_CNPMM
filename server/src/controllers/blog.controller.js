@@ -56,6 +56,7 @@ async function httpGetBlogDetailWithIdOrSlug(req, res) {
         return res.status(404).json({ error: "Not found blog with id=" + blogId });
     }
     else {
+        const slug = req.params.slug;
         const blog = await getBlogDetailWithId(null, slug);
         if(blog) {
             return res.status(200).json(blog);

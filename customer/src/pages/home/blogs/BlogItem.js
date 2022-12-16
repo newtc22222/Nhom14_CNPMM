@@ -5,8 +5,13 @@ import BoxImage from '../../../components/local/BoxImage';
 import BlogItemMenu from './BlogItemMenu';
 import timeCreated from '../../../helpers/calculateLastUpdateTime';
 
+const formatPrice = (price) => {
+    let dollarUSLocale = Intl.NumberFormat('en-US');
+    return dollarUSLocale.format(price);
+}
+
 const BlogItemCard = ({ blog, image, price }) => {
-    const { _id, slug, title, address, createdAt } = blog; 
+    const { _id, slug, title, address, createdAt, productId } = blog; 
 
     return (
         <Card sx={{ maxWidth: '192px', height: '330px', backgroundColor: '#fff', "&:hover": { boxShadow: '0 0 5px #333' } }}>
@@ -27,7 +32,7 @@ const BlogItemCard = ({ blog, image, price }) => {
                     </Link>
                     <BlogItemMenu />
                 </Box>
-                <Typography sx={{ fontSize: '0.9rem', fontWeight: 'bold', color: '#D0021B' }}>{(price ?? "50.000") + " đ"}</Typography>
+                <Typography sx={{ fontSize: '0.9rem', fontWeight: 'bold', color: '#D0021B' }}>{formatPrice(productId.price ?? 50000) + " đ"}</Typography>
                 <Typography sx={{ fontSize: '0.6rem', color: '#777', marginTop: '10px', marginBottom: '15px' }}>{timeCreated(createdAt) + " - " + address}</Typography>
             </Box>
         </Card>

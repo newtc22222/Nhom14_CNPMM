@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import BoxImage from "../../../components/local/BoxImage";
-import apiProducts from "../../../apis/product.api";
-import convertImage from "../../../helpers/convertImage";
 
 const Carousel = ({ productId }) => {
   const [img, setImg] = useState(0);
-  const [imageList, setImageList] = useState([]);
-  console.log(imageList);
+  const imageList = productId?.images || [];
 
   const handleChangeImg = (index) => {
     setImg(index);
   };
 
-  const handleImageListMap = (imageList) => {
-    if (imageList.length) {
-      return (
-        <>
-          {imageList.map((image, index) => {
-            console.log(image.data.data);
+  return (
+    <Box sx={{padding: '5px', height: '360px', boxShadow: '0 0 5px #FF8C00'}}>
+      <BoxImage
+        height="100%"
+        alt={productId?.decription || "Nothing"}
+        src={imageList[img]}
+      />
+      {imageList.map((image, index) => {
             const color = index === img ? "#333" : "#ccc";
             return (
               <Box
@@ -26,7 +25,7 @@ const Carousel = ({ productId }) => {
                 sx={{
                   display: "block",
                   position: "absolute",
-                  top: "calc(128px + 7vw)",
+                  top: "37vh",
                   left: `calc(50% - (40px * ${
                     imageList.length / 2
                   }) + 40px * ${index})`,
@@ -40,40 +39,9 @@ const Carousel = ({ productId }) => {
                 }}
                 onClick={() => handleChangeImg(index)}
               >
-                <img src={convertImage(image.data.data)} alt={""} />
               </Box>
             );
           })}
-        </>
-      );
-    }
-    return <></>;
-  };
-
-  useEffect(() => {
-    const callApiProductImage = async () => {
-      if (productId) {
-        const imageList = await apiProducts.getProductImageWithProductId(
-          productId
-        );
-        setImageList(imageList);
-      }
-    };
-
-    return () => {
-      callApiProductImage();
-    };
-  }, []);
-
-  return (
-    <Box sx={{ width: "100%" }}>
-      <BoxImage
-        height="100%"
-        width="100%"
-        alt={"Nothing"}
-        src={imageList[img]}
-      />
-      {handleImageListMap}
     </Box>
   );
 };

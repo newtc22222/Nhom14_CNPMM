@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router';
 import AppLayout from './containers/AppLayout';
 import Home from './pages/home/Home';
 import Blog from './pages/blogs/Blog';
+import BlogPage from './pages/blogs/BlogPage';
 import InvoiceLayout from './pages/invoices/InvoiceLayout';
 import UserPage from './pages/user/UserPage';
 import ProfilePage from './pages/user/profile/ProfilePage';
@@ -29,6 +30,8 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="blogs">
               <Route index element={<Blog />} />
+              <Route path="s/:slug" element={<BlogPage />} />
+              <Route path=":id" element={<BlogPage />} />
               <Route path="create-blog" element={<Post />} />
             </Route>
             <Route path="bills" element={<InvoiceLayout />} >

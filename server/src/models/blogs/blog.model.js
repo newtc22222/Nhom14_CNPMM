@@ -24,6 +24,26 @@ async function findBlogWithSlug(slug) {
     return await findBlogs({ slug });
 }
 
+async function getAllBlogDetails() {
+    return await Blog
+        .find({})
+        .populate('categoryId')
+        .populate('productId')
+}
+
+async function getBlogDetailWithId(blogId, slug) {
+    if(blogId)
+        return await Blog
+            .findById(blogId)
+            .populate('categoryId')
+            .populate('productId')
+    else
+        return await Blog
+            .find({slug})
+            .populate('categoryId')
+            .populate('productId')
+}
+
 async function findBlogsWithCategoryId(categoryId) {
     return await findBlogs({ categoryId });
 }
@@ -90,6 +110,8 @@ module.exports = {
     getAllBlogs,
     findBlogWithId,
     findBlogWithSlug,
+    getAllBlogDetails,
+    getBlogDetailWithId,
     findBlogsWithCategoryId, // tim theo loai san pham
     findBlogsWithProductName, // tim theo ten san pham
     getBlogsOfUser, // blog nguoi dung viet

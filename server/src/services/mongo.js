@@ -5,6 +5,7 @@ require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
 
 mongoose.set('strictQuery', true);
+mongoose.set('strictPopulate', true);
 
 mongoose.connection.once('open', () => {
     console.log("MongoDB connection ready!");

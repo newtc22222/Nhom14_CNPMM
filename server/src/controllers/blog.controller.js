@@ -2,6 +2,8 @@ const {
     getAllBlogs,
     findBlogWithId,
     findBlogWithSlug,
+    getAllBlogDetails,
+    getBlogDetailWithId,
     findBlogsWithCategoryId,
     findBlogsWithProductName,
     getBlogsOfUser,
@@ -12,9 +14,9 @@ const {
     removeBlog
 } = require('../models/blogs/blog.model');
 
-const {
-    getPagination
-} = require('../services/query')
+const { findCategoryWithId } = require('../models/categories/category.model');
+// const { findProductWithId } = require('../models/products/product.model');
+// const { getCommentsOfBlog } = require('../models/comments/comment.model');
 
 async function httpGetAllBlogs (req, res) {
     const productName = req.query.key;
@@ -34,6 +36,32 @@ async function httpFindBlogWithId (req, res) {
         return res.status(200).json(blog);
     }
     return res.status(404).json({ error: "Not found blog with id=" + blogId });
+}
+
+async function httpGetAllBlogDetails(req, res) {
+    const blogs = await getAllBlogDetails();
+    if(blogs) {
+        return res.status(200).json(blogs);
+    }
+    return res.status(404).json({ error: "Not found any blog!" });
+}
+
+async function httpGetBlogDetailWithIdOrSlug(req, res) {
+    const blogId = req.params.id;
+    if(blogId) {
+        const blog = await getBlogDetailWithId(blogId, null);
+        if(blog) {
+            return res.status(200).json(blog);
+        }
+        return res.status(404).json({ error: "Not found blog with id=" + blogId });
+    }
+    else {
+        const blog = await getBlogDetailWithId(null, slug);
+        if(blog) {
+            return res.status(200).json(blog);
+        }
+        return res.status(404).json({ error: "Not found blog with slug=" + slug });
+    }    
 }
 
 async function httpFindBlogWithSlug (req, res) {
@@ -144,6 +172,8 @@ module.exports = {
     httpGetAllBlogs,
     httpFindBlogWithId,
     httpFindBlogWithSlug,
+    httpGetAllBlogDetails,
+    httpGetBlogDetailWithIdOrSlug,
     httpFindBlogWithCategoryId,
     httpGetBlogsOfUser,
     httpGetBlogsSaveOfUser,

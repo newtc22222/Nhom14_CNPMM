@@ -10,7 +10,7 @@ const BlogsBox = () => {
 
     useEffect(() => {
         async function callAPI() {
-            const blogList = await apiBlogs.getAllBlogs();
+            const blogList = await apiBlogs.getAllBlogsWithDetail();
             setBlogs(blogList);
         }    
 

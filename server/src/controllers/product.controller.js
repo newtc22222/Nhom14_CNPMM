@@ -6,7 +6,7 @@ const {
     findProductWithId,
     getProductImages,
     getProductsByCategory,
-    getProductsByImage, // filter (quan trong)
+    getProductsByImage, // filter
     getProductsByName, // filter
     createNewProduct,
     updateProduct,
@@ -19,6 +19,7 @@ const {
 
 async function httpGetAllProducts (req, res) {
     const products = await getAllProducts();
+    console.log(products);
     if(products) {
         return res.status(200).json(products);
     }
@@ -66,20 +67,6 @@ async function httpCreateNewProduct(req, res) {
         price: req.body.price
     };
 
-    try {
-        files.forEach((file) => {
-            newProduct.images.push(
-                {
-                    data: fs.readFileSync(path.join(__dirname, '..', '..', '/uploads/' + file.filename)),
-                    contentType: 'image/png' 
-                }
-            )
-        })
-    }
-    catch(err) {
-        console.log(err);
-    }
-
     const result = await createNewProduct(newProduct);
     if(result) {
         return res.status(201).json(result);
@@ -104,20 +91,6 @@ async function httpUpdateProduct (req, res) {
         description: req.body.description,
         price: req.body.price
     };
-
-    try {
-        files.forEach((file) => {
-            newProduct.images.push(
-                {
-                    data: fs.readFileSync(path.join(__dirname, '..', '..', '/uploads/' + file.filename)),
-                    contentType: 'image/png' 
-                }
-            )
-        })
-    }
-    catch(err) {
-        console.log(err);
-    }
 
     const result = await updateProduct(newProduct, productId);
     if(result) {

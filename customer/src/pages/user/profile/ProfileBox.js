@@ -61,38 +61,6 @@ const ProfileBox = () => {
 
   const handleEditMode = async () => {
     if (editMode) {
-      // const newInformation = {
-      //   name: nameRef.current.value,
-      //   dob: dobRef.current.value,
-      //   gender: userGender,
-      //   address: {
-      //     street: addressStreetRef.current.value,
-      //     town: addressTownRef.current.value,
-      //     province: addressProvinceRef.current.value,
-      //   },
-      //   email: emailRef.current.value,
-      //   phone: "+84" + phoneRef.current.value.slice(1),
-      // };
-      // console.log(newInformation);
-
-      // if (
-      //   newInformation.name.trim() === "" ||
-      //   newInformation.name === null || //name
-      //   new Date(newInformation.dob).getYear() >
-      //     new Date().getFullYear() - 16 || //dob
-      //   newInformation.address.street.trim() === "" ||
-      //   newInformation.address.street === null || // street
-      //   newInformation.address.town.trim() === "" ||
-      //   newInformation.address.town === null || //town
-      //   newInformation.address.province.trim() === "" ||
-      //   newInformation.address.province === null || //province
-      //   newInformation.phone.trim() === "" ||
-      //   newInformation.phone === null || // phone
-      //   newInformation.password.length < 8
-      // ) {
-      //   alert("Có thông tin chưa hợp lệ!");
-      // }
-
       const userFormData = new FormData();
       // const avatarBuffer = new TextEncoder().encode(userAvatar.avatar); // Convert Buffer
       userFormData.append("avatar", userAvatar.file, userAvatar.filename);
@@ -113,8 +81,6 @@ const ProfileBox = () => {
       setEditMode((prev) => !prev);
     }
   };
-
-  const handleSave = async () => {};
 
   return (
     <Box sx={{ marginTop: "20px", boxShadow: "0 0 5px #777", padding: "10px" }}>

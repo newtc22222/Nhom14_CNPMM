@@ -20,6 +20,16 @@ const apiComments = {
         );
         return handleResponse(response);
     },
+
+    getCommentWithBlogId: async (blogId) => {
+        const response = await fetch(
+            `${BASE_URL}/blogs/${blogId}/comments`,
+            {
+                method: 'GET',
+            }
+        );
+        return handleResponse(response);
+    }, 
     
     createNewComment: async (comment) => {
         const response = await fetch(

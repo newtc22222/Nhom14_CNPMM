@@ -51,10 +51,6 @@ const apiUsers = {
     },
     
     updateUser: async (user, userId) => {
-        for(let [name, value] of user) {
-            console.log(`${name} = ${value}`);
-        }
-
         const response = await fetch(
             `${BASE_URL}/users/${userId}`,
             {

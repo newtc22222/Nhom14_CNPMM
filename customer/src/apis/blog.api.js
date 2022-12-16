@@ -8,6 +8,13 @@ const apiBlogs = {
     return handleResponse(response);
   },
 
+  getAllBlogsWithDetail: async () => {
+    const response = await fetch(`${BASE_URL}/blogs/details`, {
+      method: "GET",
+    });
+    return handleResponse(response);
+  },
+
   getBlogWithId: async (blogId) => {
     const response = await fetch(`${BASE_URL}/blogs/${blogId}`, {
       method: "GET",
@@ -17,6 +24,20 @@ const apiBlogs = {
 
   getBlogWithSlug: async (slug) => {
     const response = await fetch(`${BASE_URL}/blogs/s/${slug}`, {
+      method: "GET",
+    });
+    return handleResponse(response);
+  },
+
+  getBlogDetailsWithId: async (blogId) => {
+    const response = await fetch(`${BASE_URL}/blogs/${blogId}/details`, {
+      method: "GET",
+    });
+    return handleResponse(response);
+  },
+
+  getBlogDetailsWithSlug: async (slug) => {
+    const response = await fetch(`${BASE_URL}/blogs/s/${slug}/details`, {
       method: "GET",
     });
     return handleResponse(response);

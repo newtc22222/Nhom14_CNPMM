@@ -21,3 +21,4 @@ app.get('/*', (req, res) => {
     res.status(404).json({ error: "api not found!" });
 });
 
+module.exports = app;

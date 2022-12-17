@@ -1,14 +1,7 @@
-import { Box } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import React, { useEffect, useState } from 'react';
-import { apiProducts } from '../../apis/products.api';
-import { apiCategories } from "../../apis/categories.api";
-// const data = [
-//   { name: "Group A", value: 400 },
-//   { name: "Group B", value: 300 },
-//   { name: "Group C", value: 300 },
-//   { name: "Group D", value: 200 },
-// ];
+import React, { useEffect, useState } from "react";
+import apiProducts from "../../apis/products.api";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
@@ -39,70 +32,72 @@ const renderCustomizedLabel = ({
   );
 };
 export default function Chart() {
-    const[categories, setCategories] = useState([]);
-    const[products, setProducts] = useState([]);
-    var type = [];
-    const[sum, setSum] = useState(0)
-    
-    useEffect(()=>{
-        const getCategories = async () => {
-            const response = await apiCategories.getAllCategories();
-            //console.log(response);
-            setCategories(response);      
-        };
-        getCategories();
+  const [products, setProducts] = useState([]);
+  const [costGroup, setCostGroup] = useState([]);
 
-        const getProducts = async (cateId) => {
-            const response = await apiProducts.getAllProducts(); 
-            setProducts(response); 
-        };
-        getProducts();
+  const getProducts = async (cateId) => {
+    const response = await apiProducts.getAllProducts();
+    setProducts(response);
+  };
 
-        const addTypes = () =>{
-            var temp = 0;
-            for(let i =0;i < categories.length; i++){
-                var s = 0;       
-                for (let j = 0; j < products.length; j++){     
-                    if(categories[i].id===products[j].categoryId){
-                        s=s+1;
-                        setSum(s);
-                    }
-                }
-                let param = {
-                    id: temp,
-                    total: sum,
-                    categogy: categories[i].subtype,
-                };
-                type.push(param);
-                temp++;
-            }
-            console.log(type);
-        }
-        addTypes();                  
-    },[])
+  useEffect(() => {
+    let five = 0,
+      fiveto10 = 0,
+      tento25 = 0,
+      morethan25 = 0;
+    getProducts();
+    products.forEach((product) => {
+      if (product.price <= 5000000) return five++;
+      if (product.price <= 10000000) return fiveto10++;
+      if (product.price <= 25000000) return tento25++;
+      morethan25++;
+    });
+    setCostGroup([
+      { name: "Dưới 5tr", qty: five },
+      { name: "Từ 5tr-10tr", qty: fiveto10 },
+      { name: "Từ 10tr-25tr", qty: tento25 },
+      { name: "Trên 25tr", qty: morethan25 },
+    ]);
+    // addTypes();
+  }, [products]);
+
   return (
-    <Box       
-        sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        flexWrap: 'wrap',
-      }}>
-      {/* <PieChart width={200} height={200}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+        flexWrap: "wrap",
+      }}
+    >
+      <PieChart width={200} height={200}>
         <Pie
-          data={data}
+          data={costGroup}
           labelLine={false}
           label={renderCustomizedLabel}
           outerRadius={80}
           fill="#8884d8"
-          dataKey="value"
+          dataKey="qty"
         >
-          {data.map((entry, index) => (
+          {costGroup.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
         <Tooltip />
-      </PieChart> */}
+      </PieChart>
+      <Stack gap={2}>
+        <Typography variant="h6">Products Cost</Typography>
+        <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
+          {COLORS.map((color, i) => (
+            <Stack key={color} alignItems="center" spacing={1}>
+              <Box sx={{ width: 20, height: 20, background: color }} />
+              <Typography variant="body2" sx={{ opacity: 0.7 }}>
+                {costGroup[i]?.name}
+              </Typography>
+            </Stack>
+          ))}
+        </Box>
+      </Stack>
     </Box>
   );
 }

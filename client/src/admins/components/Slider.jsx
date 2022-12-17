@@ -21,8 +21,9 @@ import {
   PeopleAlt,
 } from "@mui/icons-material";
 import CategorySharpIcon from "@mui/icons-material/CategorySharp";
-import CatchingPokemonIcon from "@mui/icons-material/CatchingPokemon";
-import user from "../../images/user.png";
+import DevicesOtherIcon from '@mui/icons-material/DevicesOther';
+import avt from "../../images/avt.png";
+import logoshop from "../../images/logo.png";
 
 const drawerWidth = 240;
 
@@ -100,7 +101,7 @@ const Slider = ({ open, setOpen }) => {
     },
     {
       title: "Products",
-      icon: <CatchingPokemonIcon />,
+      icon: <DevicesOtherIcon />,
       link: "products",
       component: <Products {...{ setSelectedLink, link: 'products' }} />,
     },
@@ -112,6 +113,7 @@ const Slider = ({ open, setOpen }) => {
     <>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
+            <img alt="Logo" src={logoshop}  width={150} height={30} /> 
           <IconButton onClick={() => setOpen(false)}>
             <ChevronLeft />
           </IconButton>
@@ -150,7 +152,7 @@ const Slider = ({ open, setOpen }) => {
         <Box sx={{ mx: "auto", mt: 3, mb: 1 }}>
           <Tooltip title={"Avatar"}>
             <Avatar
-              src={user}
+              src={avt}
             //   src={currentUser?.photoURL}
               {...(open && { sx: { width: 100, height: 100 } })}
             />
@@ -158,7 +160,7 @@ const Slider = ({ open, setOpen }) => {
         </Box>
         <Box sx={{ textAlign: "center" }}>
           {/* {open && <Typography>{currentUser?.name}</Typography>} */}
-          {open && <Typography>Nguyễn Duy Dương</Typography>}
+          {open && <Typography></Typography>}
           {/* <Typography variant="body2">{currentUser?.role || 'role'}</Typography> */}
           <Typography variant="body2"> {"Admin"}</Typography>
           {open && (

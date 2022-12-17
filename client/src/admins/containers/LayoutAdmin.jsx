@@ -70,7 +70,7 @@ export default function LayoutAdmin() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap sx={{flexGrow:1,}}>
-            Dashboard
+            ADMIN PAGE
           </Typography>
           <IconButton onClick={()=>setDark(!dark)}>
             {dark ? <Brightness7/> : <Brightness4/>}

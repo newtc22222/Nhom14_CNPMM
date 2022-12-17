@@ -1,7 +1,6 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-
-export const apiUsers = {
+const apiUsers = {
 
     getAllUsers: async () => {
         const response = await fetch(
@@ -17,6 +16,10 @@ export const apiUsers = {
             `${BASE_URL}/users`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(user)
             }
         );
         return handleResponse(response);
@@ -46,3 +49,4 @@ export const apiUsers = {
         return handleResponse(response);
     }
 }
+export default apiUsers;

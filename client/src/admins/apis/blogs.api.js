@@ -1,6 +1,6 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-export const apiBlogs = {
+const apiBlogs = {
     getAllBlogs : async () => {
         const response = await fetch(
             `${BASE_URL}/blogs`,
@@ -16,6 +16,10 @@ export const apiBlogs = {
             `${BASE_URL}/blogs`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(blog)
             }
         );
         return handleResponse(response);
@@ -45,3 +49,4 @@ export const apiBlogs = {
         return handleResponse(response);
     }
 }
+export default apiBlogs;

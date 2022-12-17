@@ -1,6 +1,6 @@
 import { BASE_URL, handleResponse } from "./api.config";
 
-export const apiBills = {
+const apiBills = {
     getAllBills : async () => {
         const response = await fetch(
             `${BASE_URL}/bills`,
@@ -16,6 +16,10 @@ export const apiBills = {
             `${BASE_URL}/bills`,
             {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bill)
             }
         );
         return handleResponse(response);
@@ -45,3 +49,4 @@ export const apiBills = {
         return handleResponse(response);
     }
 }
+export default apiBills;

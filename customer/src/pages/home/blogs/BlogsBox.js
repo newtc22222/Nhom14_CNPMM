@@ -25,11 +25,11 @@ const BlogsBox = () => {
             <Typography sx={{ fontWeight: 'bold' }}>Tin đăng dành cho bạn</Typography>
             <Grid container rowSpacing={0.5} columnSpacing={0.5}>
                 {blogs?.map(blog => {
-                    return (
+                    return ( (blog) &&
                         <Grid item xs={2} key={blog._id}>
                             <BlogItemCard
                                 blog={blog}
-                                image={blog.productId.images[0]}
+                                // image={blog.productId.images[0]}
                             />
                         </Grid>
                     );

@@ -57,8 +57,7 @@ async function httpGetProductByCategory (req, res) {
 }
 
 async function httpCreateNewProduct(req, res) {
-    const files = req.files;
-
+    console.log(req.body);
     const newProduct = {
         categoryId: req.body.categoryId,
         name: req.body.name,

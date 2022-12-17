@@ -35,15 +35,15 @@
 
 ## Một số hình ảnh về ứng dụng
 ### 1. Trang chủ   
-![Ảnh stolen](./resources/nice_pic_now_i_stole_it.jpg)
+![Ảnh stolen](./resources/customer_home.png)
 ### 2. Đăng nhập   
-![Trang đăng nhập]()
+![Trang đăng nhập](./resources/customer_login.png)
 ### 3. Đăng ký    
-![Trang đăng ký]()
-### 4. Trang tìm kiếm    
-![Trang tìm kiếm]()
+![Trang đăng ký](./resources/customer_register.png)
+### 4. Trang xem thông tin   
+![Trang xem thông tin ](./resources/customer_blog.png)
 ### 5. Quản lý tài khoản     
-![Trang quản lý tài khoản]()
+![Trang quản lý tài khoản](./resources/customer_profile.png)
 
 ---
 

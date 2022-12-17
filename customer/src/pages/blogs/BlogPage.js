@@ -4,8 +4,6 @@ import { Box, Breadcrumbs, Button, Grid, Typography } from "@mui/material";
 import apiBlogs from "../../apis/blog.api";
 import timeCreate from "../../helpers/calculateLastUpdateTime";
 import {
-  headerLinkStyle,
-  headerButtonPostStyle,
   gridItemProperties,
 } from "./local/style";
 

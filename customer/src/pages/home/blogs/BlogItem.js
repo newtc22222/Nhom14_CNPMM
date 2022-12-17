@@ -14,6 +14,7 @@ const BlogItemCard = ({ blog, image, price }) => {
     const { _id, slug, title, address, createdAt, productId } = blog; 
 
     return (
+        (blog.productId) && 
         <Card sx={{ maxWidth: '192px', height: '330px', backgroundColor: '#fff', "&:hover": { boxShadow: '0 0 5px #333' } }}>
             <Link to={`/blogs/s/${slug}`} style={{ textDecoration: 'none' }}>
                 <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '10px' }}>
@@ -21,7 +22,7 @@ const BlogItemCard = ({ blog, image, price }) => {
                         height="166px"
                         width="166px"
                         alt={title}
-                        src={image}
+                        src={blog.productId.images[0]}
                     />
                 </Box>
             </Link>

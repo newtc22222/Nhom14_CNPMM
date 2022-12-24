@@ -5,7 +5,8 @@
     - Mẫu (đã có sẵn dữ liệu): 
     `mongodb+srv://phivo:Test!23@cluster0.vlfnk.mongodb.net/good_fair?retryWrites=true&w=majority`
 2. Thêm vào file .env `MONGOURL=<đường dẫn>`
-3. Mở thư mục **server** bằng Terminal và thực thi với lệnh `npm start`
+3. Tạo thư mục **uploads** bên trong server (dùng để lưu hình ảnh của người dùng)
+4. Mở thư mục **server** bằng Terminal và thực thi với lệnh `npm start`
 
 ---
 

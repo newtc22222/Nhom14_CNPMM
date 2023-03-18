@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "e3c178d8-c538-4b51-aa6e-2e955dd09021",
+		"name": "Test Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "22732766-e3c178d8-c538-4b51-aa6e-2e955dd09021"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"id": "7c7683f1-e735-4144-832e-1b5a51fc453f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "87c62e2c-4fde-4bf3-b629-b59f615eaf60",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "140e0ce0-fea0-4d81-b469-eb20741093b6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "e3400a00-ffaa-4dff-ab61-96f91790abef",
+			"key": "localhost",
+			"value": "127.0.0.1",
+			"type": "string"
+		},
+		{
+			"id": "c927f7c4-1b1b-4035-811a-32b487837cef",
+			"key": "port",
+			"value": "8080",
+			"type": "string"
+		},
+		{
+			"id": "9236afe2-3c03-4923-a4db-4a8b8883ea5a",
+			"key": "api_v1",
+			"value": "api/v1",
+			"type": "string"
+		},
+		{
+			"id": "9050123b-5adb-44fd-8238-512e15806fb8",
+			"key": "base_url",
+			"value": "{{localhost}}:{{port}}/{{api_v1}}",
+			"type": "string"
+		}
+	]
+}
